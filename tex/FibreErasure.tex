@@ -82,14 +82,47 @@ in Admissible Non-Injective Projection}
   \section{Introduction}
     \label{sec:intro}
 
-% [Prose $\sim$300 words.
-% Motivate the gap between ENI (qualitative: $S_\Pi > 0$, non-injectivity forces
-% information loss) and the spectral programme (quantitative: $\sigma_c(\ell)$
-% campaigns, plateau structure, [H-color]).
-% Announce that this paper bridges them via an information-theoretic monotone.
-% Emphasise that the result is conditional on [H-suff], not yet proved.
-% Recall that the coarse-graining axis $\ell$ is orthogonal to the
-% temporal cascade axis $n$ of~\cite{Beau2026pto}.]
+    The ENI no-go theorem~\cite{Beau2026l} establishes a fundamental structural fact:
+    genuine emergence is necessarily non-injective.
+    Any surjective map $\Pi : \Omegaspace \to \Obs$ satisfying the projective-emergent
+    conditions carries a strictly positive projection entropy~$S_\Pi > 0$:
+    information about the microscopic representative is irrecoverably lost at the effective level.
+    This is a qualitative result.
+    It identifies the structure of information loss but says nothing about how this loss
+    is distributed across a hierarchy of resolutions.
+
+    The Cosmochrony spectral programme~\cite{Beau2026a1,Beau2026a2} provides a concrete
+    realisation of this hierarchy.
+    For each prime~$q$, the BFS capacity profiles~$\sigma_c(\ell)$, indexed by
+    Weil-block fibre label~$c$ and coarse-graining depth~$\ell$,
+    track the residual projective capacity of block~$c$ as the BFS cascade advances.
+    Numerical campaigns across $q \in \{61, 151, 211\}$ reveal a consistent pattern:
+    inter-sector variance collapses as depth increases, and the profiles converge
+    toward a universal profile~$\sigma^*$.
+    Hypothesis~[H-color]~\cite{Beau2026a35,Beau2026a36} identifies one specific instance
+    of this convergence: the $\mathrm{SU}(3)$ colour-triplet sectors
+    $\{c, \omega c, \omega^2 c\}$ become indistinguishable at the effective level
+    for $q \equiv 1 \pmod{3}$.
+
+    This paper addresses the following question:
+    can the qualitative ENI no-go and the quantitative spectral convergence be connected
+    by a principled information-theoretic structure?
+    We show that the answer is yes, conditional on the structural sufficiency
+    hypothesis~\textup{[H-suff]}:
+    the residual fibre-information functional $I(c;\sigma(\ell))$
+    is non-increasing in the coarse-graining depth~$\ell$,
+    by the data-processing inequality~\cite{CoverThomas2006}.
+    The result is conditional, not unconditional:
+    \textup{[H-suff]} is strongly motivated (Remark~\ref{rem:suff-not-adhoc})
+    but not yet proved.
+
+    Two structural distinctions are essential before proceeding.
+    First, the coarse-graining axis~$\ell$ is distinct from and orthogonal to
+    the temporal cascade axis~$n$ of the PTO paper~\cite{Beau2026pto}:
+    see Table~\ref{tab:axes} and Remark~\ref{rem:axes}.
+    Second, as stated in Section~\ref{sec:claims}, ENI alone does not imply monotonicity;
+    the hierarchical structure of~\textup{[H-suff]} and~\textup{[H-sg]} is
+    the informational content this paper contributes beyond ENI.
 
     \subsection{Contributions and non-claims}
       \label{sec:claims}
@@ -133,15 +166,22 @@ see open problem~\textup{[O-2]});
   \subsection{Programme placement}
     \label{sec:placement}
 
-% [Prose $\sim$100 words.
-% Dependency: ENI~\cite{Beau2026l} provides the foundational no-go;
-% Foundation~\cite{Beau2026m} provides the Weil-fibre realisation and the spectral
-% capacity hierarchy~\cite{Beau2026a1,Beau2026a2}.
-% This paper translates the ENI projection entropy $S_\Pi$ into the operational
-% functional $I(c;\sigma(\ell))$ and connects it to the O31--O32
-% campaign~\cite{Beau2026a35,Beau2026a36}.
-% The coarse-graining axis $\ell$ is orthogonal to the PTO temporal
-% axis $n$~\cite{Beau2026pto} (Table~\ref{tab:axes}).]
+    The present paper occupies a hub position in the programme.
+    ENI~\cite{Beau2026l} and Foundation~\cite{Beau2026m} provide the foundational input:
+    the non-injective projection~$\Pi$, the Weil-fibre realisation,
+    and the projection entropy~$S_\Pi$.
+    The spectral admissibility programme~\cite{Beau2026a1,Beau2026a2} provides the
+    operational hierarchy: the BFS capacity profiles~$\sigma_c(\ell)$ and their
+    numerical campaigns, including the O31--O32
+    investigation~\cite{Beau2026a35,Beau2026a36}.
+    This paper connects these two branches by translating the ENI projection
+    entropy into the operational functional~$I(c;\sigma(\ell))$
+    and identifying spectral convergence~$\sigma_c \to \sigma^*$
+    as a candidate fibre-erasure fixed point.
+    The PTO paper~\cite{Beau2026pto} handles the complementary temporal axis~$n$
+    (Table~\ref{tab:axes});
+    the two papers are structurally orthogonal and together constitute
+    the information-theoretic architecture of the admissibility cascade.
 
   \section{Framework}
   \label{sec:framework}
@@ -185,11 +225,16 @@ see open problem~\textup{[O-2]});
       on conjugate pair $(c,q-c)$.
     \end{definition}
 
-% [Prose $\sim$80 words.
-% Recap BFS construction; why $\sigma_c(\ell)$ is the natural observable
-% at the level of individual fibre labels; note that $\ell$ is a discrete depth
-% parameter and hence the coarse-graining semigroup
-% (Section~\ref{sec:semigroup}) acts on a discrete monoid.]
+    For a prime~$q$, the Heisenberg group $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$
+    carries a Cayley graph whose BFS shells~$B_\ell$ grow as $|B_\ell| \sim \ell^4$
+    in the Heisenberg regime~\cite{Beau2026a1}.
+    The capacity profile~$\sigma_c(\ell)$ measures the residual Gram-Schmidt span
+    of Weil block~$\rho_c$ not yet exhausted at shell depth~$\ell$:
+    it starts at $\sigma_c(0) = 1$ and decreases toward~$0$
+    as BFS saturation is approached.
+    The depth parameter~$\ell \in \mathbb{N}$ is discrete;
+    the coarse-graining semigroup of Section~\ref{sec:semigroup}
+    therefore acts on a discrete monoid, not a continuous scale.
 
   \subsection{Three-axis separation}
     \label{sec:axes}
@@ -251,11 +296,18 @@ see open problem~\textup{[O-2]});
       \end{equation}
     \end{hypothesis}
 
-% [Prose $\sim$80 words.
-% Motivate [H-sg]: plausible from the nested structure of BFS shells.
-% Without [H-sg], DPI still gives step-by-step monotonicity ($\ell$ to $\ell+1$),
-% but the uniform statement for all $\ell' > \ell$ requires composability.
-% [H-sg] is what makes the family RG-like in the strong sense.]
+    Hypothesis~\textup{[H-sg]} is plausible from the nested structure of BFS shells:
+    the subgraph induced by~$B_{\ell_1}$ is contained in that induced by~$B_{\ell_2}$
+    for $\ell_1 < \ell_2$,
+    so the transition $\sigma(\ell_1) \to \sigma(\ell_2)$ can in principle be factored
+    through~$\sigma(\ell_1)$ alone.
+    Without~\textup{[H-sg]}, the data-processing inequality applied step-by-step
+    via~\textup{[H-suff]} yields $I(c;\sigma(\ell+1)) \leq I(c;\sigma(\ell))$
+    for each consecutive pair,
+    but not the uniform statement of Theorem~\ref{thm:erasure} for all $\ell' > \ell$.
+    Note that the semigroup acts on the space of observable descriptions,
+    not on the static substrate~$\Omegaspace$:
+    composability is a property of the coarse-graining of effective observables.
 
   \subsection{Probability measure on fibre labels}
     \label{sec:measure}
@@ -340,12 +392,27 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     it reflects the genuine logical dependence of the monotonicity on the Markov structure.
   \end{remark}
 
-% [Prose $\sim$150 words.
-% Discuss what a proof of [H-suff] would look like: show that the depth-increment
-% kernel $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of~$c$.
-% Suggest a first numerical test: does conditioning on~$c$ in addition
-% to~$\sigma(\ell)$ reduce prediction error for~$\sigma(\ell+1)$?
-% If not, this is empirical evidence for [H-suff].]
+  A proof of~\textup{[H-suff]} would establish that the BFS depth-increment
+  kernel $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of the fibre label~$c$.
+  Structurally, this would follow from the fact that the BFS recursion on the
+  Heisenberg Cayley graph is governed by the group geometry ---
+  shared across all fibre labels up to conjugation ---
+  and the Born-Infeld admissibility constraint,
+  rather than by the specific character of block~$c$.
+  A partial result is already in hand:
+  the conjugation symmetry $\rho_c \cong \rho_{q-c}$ ensures
+  $\sigma_c(\ell) = \sigma_{q-c}(\ell)$ within each conjugate pair,
+  consistent with~\textup{[H-suff]} at the pair level.
+  The full extension requires showing that cross-pair dynamics also factors
+  through~$\sigma(\ell)$.
+
+  A first numerical test is available without new code.
+  For each depth step $\ell \to \ell + 1$ in the existing pipeline,
+  compute the conditional mutual information $I(c;\,\sigma(\ell+1) \mid \sigma(\ell))$.
+  If this quantity is negligible across all tested pairs and depths,
+  it constitutes empirical evidence for~\textup{[H-suff]}.
+  A non-negligible value at some depth would precisely identify
+  the step where the Markov assumption breaks down.
 
   \section{The Fibre-Erasure Theorem}
   \label{sec:erasure}
@@ -482,16 +549,21 @@ to all $\ell' > \ell$.
   \subsection{Numerical programme}
     \label{sec:numprog}
 
-% [PLACEHOLDER $\sim$1 page.
-% Report values of $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
-% as functions of BFS depth~$\ell$ for $q \in \{61, 151, 211\}$.
-% Test whether $\mathcal{V}(\ell)$ is monotone non-increasing in~$\ell$;
-% if not, compute $I(c;\sigma(\ell))$ directly via a histogram-based
-% or $k$-NN mutual-information estimator.
-% Test [H-suff] numerically: compare prediction errors for $\sigma(\ell+1)$
-% with and without conditioning on~$c$.
-% Figures: $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
-% vs $\ell$ for each $q$, with triplet curves highlighted.]
+    This section will report the numerical results of the fibre-erasure programme
+    applied to the existing spectral admissibility data for $q \in \{61, 151, 211\}$.
+    Four items are pending numerical computation:
+    the inter-sector variance $\mathcal{V}(\ell)$
+    and the triplet-restricted variance $\mathcal{V}_{\mathrm{triplet}}(\ell)$
+    as functions of BFS depth~$\ell$, with a monotonicity test;
+    a direct estimate of~$I(c;\sigma(\ell))$ via a histogram-based
+    or $k$-nearest-neighbour mutual-information estimator
+    if~$\mathcal{V}$ is found to be non-monotone at some~$q$;
+    a test of~\textup{[H-suff]} via the conditional mutual
+    information $I(c;\,\sigma(\ell+1) \mid \sigma(\ell))$,
+    comparing prediction errors for~$\sigma(\ell+1)$
+    with and without conditioning on~$c$;
+    and figures showing $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
+    versus~$\ell$ for each~$q$, with colour-triplet curves highlighted.
 
   \section{Open Problems}
   \label{sec:open}
