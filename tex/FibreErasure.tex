@@ -15,6 +15,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{hypothesis}[theorem]{Hypothesis}
@@ -121,6 +122,14 @@ see open problem~\textup{[O-2]});
         for effective degrees of freedom, which is not established here and is listed
         as open problem~\textup{[O-2]} in Section~\ref{sec:open}.
 
+      \paragraph{ENI versus monotonicity.}
+        ENI~\cite{Beau2026l} establishes that information is structurally lost under
+        non-injective projection, but does not by itself imply any monotone hierarchy
+        over the coarse-graining scale~$\ell$.
+        The monotonicity of Theorem~\ref{thm:erasure} requires the additional
+        hierarchical structure encoded in~\textup{[H-suff]} and~\textup{[H-sg]}:
+        these are the informational content this paper contributes beyond ENI.
+
   \subsection{Programme placement}
     \label{sec:placement}
 
@@ -193,7 +202,7 @@ see open problem~\textup{[O-2]});
         \midrule
         Coarse-graining / resolution
         & $\ell$ (BFS depth/window)
-        & RG-like; carries $I(c;\sigma(\ell))$; this paper \\
+        & coarse-graining hierarchy; carries $I(c;\sigma(\ell))$; this paper \\
         Thermodynamic / continuum
         & $q \to \infty$
         & Continuum limit; Conjecture~4.7 of~\cite{Beau2026q5b} \\
@@ -281,9 +290,13 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     \end{equation}
     That is, $\sigma(\ell)$ is a \emph{sufficient statistic} for~$\sigma(\ell')$
     with respect to the fibre label~$c$.
+    The term ``sufficient'' is used in the information-theoretic sense:
+    all information in~$\sigma(\ell)$ that is predictive of~$\sigma(\ell')$
+    is already fully encoded; no additional knowledge of~$c$ reduces
+    the uncertainty in~$\sigma(\ell')$ beyond what $\sigma(\ell)$ already captures.
   \end{hypothesis}
 
-  \begin{remark}[\textup{[H-suff]} is not ad hoc]
+  \begin{remark}[Interpretive status of~\textup{[H-suff]}]
     \label{rem:suff-not-adhoc}
     Hypothesis~\textup{[H-suff]} is not introduced solely to enable the DPI.
     It is the informational reformulation of an effective closure property already
@@ -295,6 +308,16 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     across $q \in \{61, 151, 211\}$,
     and the [H-color] campaign~\cite{Beau2026a35,Beau2026a36}
     would be structurally very difficult to account for.
+    More precisely,~\textup{[H-suff]} is the condition that the BFS observable~$\sigma(\ell)$
+    constitutes a \emph{complete summary} of the fibre structure at resolution~$\ell$:
+    the projection~$\Pi$ has already collapsed the relevant fibre information
+    at each level of the hierarchy, and no deeper BFS step retrieves it.
+    This is exactly what the non-injectivity of~$\Pi$ (ENI~\cite{Beau2026l}) demands
+    at the effective level: fibre information is not gradually re-injected
+    as coarse-graining proceeds, but is collapsed once and for all by~$\Pi$.
+    In this sense,~\textup{[H-suff]} makes explicit, in information-theoretic language,
+    a structural commitment already implicit in the programme's use
+    of~$\sigma_c(\ell)$ as an effective observable.
   \end{remark}
 
   \begin{remark}[Status of~\textup{[H-suff]}]
@@ -302,6 +325,19 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     Hypothesis~\textup{[H-suff]} is strongly motivated by Remark~\ref{rem:suff-not-adhoc}
     and is compatible with all known spectral results.
     It is not yet proved; its proof is listed as open problem~\textup{[O-1]}.
+  \end{remark}
+
+  \begin{remark}[Why~\textup{[H-suff]} is load-bearing]
+    \label{rem:loadsuff}
+    If hypothesis~\textup{[H-suff]} fails for some pair $(\ell,\ell')$ ---
+    that is, if $\sigma(\ell')$ depends on~$c$ beyond its dependence on~$\sigma(\ell)$
+    --- then no structural information monotone of the form
+    $I(c;\sigma(\ell')) \leq I(c;\sigma(\ell))$ can be guaranteed.
+    If $p(\sigma(\ell') \mid \sigma(\ell), c) \neq p(\sigma(\ell') \mid \sigma(\ell))$
+    for some~$c$, then the chain $c \to \sigma(\ell) \to \sigma(\ell')$ is not Markov,
+    and the data-processing inequality does not apply.
+    This is not a limitation of the proof technique;
+    it reflects the genuine logical dependence of the monotonicity on the Markov structure.
   \end{remark}
 
 % [Prose $\sim$150 words.
@@ -351,12 +387,12 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     \end{theorem}
 
     \begin{proof}[Proof sketch]
-      By~\textup{[H-suff]}, the triple $(c,\sigma(\ell),\sigma(\ell'))$ forms
-      a Markov chain~\eqref{eq:markov}.
-      The data-processing inequality~\cite{CoverThomas2006}
-      applied to this chain gives~\eqref{eq:erasure} directly.
-      Composability~\textup{[H-sg]} extends the inequality from $\ell' = \ell + 1$
-      to all $\ell' > \ell$.
+By~\textup{[H-suff]}, the triple $(c,\sigma(\ell),\sigma(\ell'))$ forms
+a Markov chain~\eqref{eq:markov}.
+The data-processing inequality~\cite{CoverThomas2006}
+applied to this chain gives~\eqref{eq:erasure} directly.
+Composability~\textup{[H-sg]} extends the inequality from $\ell' = \ell + 1$
+to all $\ell' > \ell$.
     \end{proof}
 
     \begin{corollary}[Fibre-erasure fixed point]
@@ -496,6 +532,6 @@ see Conjecture~4.7 of~\cite{Beau2026q5b}).
 
   \clearpage
   \bibliographystyle{plain}
-  \bibliography{cosmochrony-bibliography}
+  \bibliography{cosmochrony-bibliography,external-refs}
 
 \end{document}
