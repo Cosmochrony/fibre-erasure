@@ -1,0 +1,501 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{doi}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Omegaspace}{\Omega}
+\newcommand{\Obs}{\mathcal{O}}
+
+\title{Projective Information Loss and Fibre Erasure\\
+in Admissible Non-Injective Projection}
+\author{J\'er\^ome Beau\\[4pt]
+\small Independent Researcher, Puteaux, France\\
+\small \texttt{jerome.beau@cosmochrony.org}}
+\date{2026}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{abstract}
+    We establish a fibre-erasure theorem for the admissible coarse-graining hierarchy
+    of the Cosmochrony spectral programme~\cite{Beau2026l,Beau2026m}.
+    The non-injective projection $\Pi : \Omegaspace \to \Obs$ defines a residual
+    fibre-information functional $I(c;\sigma(\ell))$,
+    where $c$ is a Weil-block fibre label and $\sigma_c(\ell)$ is the BFS capacity
+    profile at coarse-graining depth~$\ell$.
+    Conditional on the structural sufficiency hypothesis~\textup{[H-suff]} ---
+    that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$
+    --- the data-processing inequality~\cite{CoverThomas2006}
+    implies that $I(c;\sigma(\ell))$ is non-increasing in~$\ell$:
+    fibre information is erased, not created, under admissible coarse-graining.
+    This result is \emph{not} a $c$-theorem; it does not count effective degrees of freedom.
+    It is a quantitative realisation of the ENI no-go theorem~\cite{Beau2026l}:
+    non-injectivity of~$\Pi$ forces projective information loss,
+    and the data-processing inequality makes this loss monotone and measurable.
+    The inter-sector variance $\mathrm{Var}_c(\sigma_c(\ell))$ serves as a computable proxy;
+    its restriction to $\mathrm{SU}(3)$ colour-triplets connects directly
+    to hypothesis~[H-color]~\cite{Beau2026a35,Beau2026a36}.
+  \end{abstract}
+
+% TODO: add CoverThomas2006 to cosmochrony-bibliography.bib
+% Cover, T.M., Thomas, J.A.: Elements of Information Theory, 2nd ed. Wiley (2006).
+
+  \smallskip
+  \noindent\textbf{Keywords.}
+  non-injective projection;
+  fibre erasure;
+  admissible coarse-graining;
+  data-processing inequality;
+  information monotone;
+  BFS capacity;
+  spectral admissibility;
+  projective information loss;
+  Weil representation;
+  Heisenberg group;
+  [H-color]
+
+  \newpage
+  \tableofcontents
+
+  \newpage
+
+  \section{Introduction}
+    \label{sec:intro}
+
+% [Prose $\sim$300 words.
+% Motivate the gap between ENI (qualitative: $S_\Pi > 0$, non-injectivity forces
+% information loss) and the spectral programme (quantitative: $\sigma_c(\ell)$
+% campaigns, plateau structure, [H-color]).
+% Announce that this paper bridges them via an information-theoretic monotone.
+% Emphasise that the result is conditional on [H-suff], not yet proved.
+% Recall that the coarse-graining axis $\ell$ is orthogonal to the
+% temporal cascade axis $n$ of~\cite{Beau2026pto}.]
+
+    \subsection{Contributions and non-claims}
+      \label{sec:claims}
+
+      This paper establishes, conditional on hypotheses~\textup{[H-suff]}
+      and~\textup{[H-sg]} (Section~\ref{sec:semigroup}):
+      \begin{enumerate}[label=(\roman*)]
+\item a monotone information functional $I(c;\sigma(\ell))$
+for the BFS coarse-graining hierarchy (Theorem~\ref{thm:erasure});
+\item its non-increase under depth-increment, via the data-processing inequality;
+\item the identification of $I(c;\sigma(\ell)) = 0$
+as the fibre-erasure fixed-point condition (Corollary~\ref{cor:fixedpoint}).
+      \end{enumerate}
+      This paper does \emph{not} establish:
+      \begin{enumerate}[label=(\roman*)]
+\item a $c$-theorem or analogue (no counting of effective degrees of freedom;
+see open problem~\textup{[O-2]});
+\item hypothesis~\textup{[H-suff]} itself
+(stated and motivated; see open problem~\textup{[O-1]});
+\item the semigroup hypothesis~\textup{[H-sg]}
+(stated and motivated; see open problem~\textup{[O-1]}).
+      \end{enumerate}
+
+      \paragraph{Strict disclaimer.}
+        This result should not be called a $c$-theorem.
+        It is a \emph{fibre-erasure theorem}:
+        the monotone measures the loss of residual fibre-label information under
+        admissible coarse-graining.
+        A $c$-theorem-type statement would require an additional counting principle
+        for effective degrees of freedom, which is not established here and is listed
+        as open problem~\textup{[O-2]} in Section~\ref{sec:open}.
+
+  \subsection{Programme placement}
+    \label{sec:placement}
+
+% [Prose $\sim$100 words.
+% Dependency: ENI~\cite{Beau2026l} provides the foundational no-go;
+% Foundation~\cite{Beau2026m} provides the Weil-fibre realisation and the spectral
+% capacity hierarchy~\cite{Beau2026a1,Beau2026a2}.
+% This paper translates the ENI projection entropy $S_\Pi$ into the operational
+% functional $I(c;\sigma(\ell))$ and connects it to the O31--O32
+% campaign~\cite{Beau2026a35,Beau2026a36}.
+% The coarse-graining axis $\ell$ is orthogonal to the PTO temporal
+% axis $n$~\cite{Beau2026pto} (Table~\ref{tab:axes}).]
+
+  \section{Framework}
+  \label{sec:framework}
+
+  \subsection{Non-injective projection and fibre structure}
+    \label{sec:fibre}
+
+    We recall the setting of~\cite{Beau2026l,Beau2026m}.
+
+    \begin{definition}[Non-injective projection and fibre]
+      \label{def:projection}
+      A \emph{projective description} is a surjective map $\Pi : \Omegaspace \to \Obs$
+      such that $\Obs$ carries no microstate-resolving structure independent of~$\Pi$.
+      The \emph{fibre} over $o \in \Obs$ is
+      $\Pi^{-1}(o) = \{\,\omega \in \Omegaspace : \Pi(\omega) = o\,\}$.
+      The \emph{projection entropy} is
+      $S_\Pi = \mathbb{E}_{o}[\,\log|\Pi^{-1}(o)|\,] \geq 0$,
+      with $S_\Pi > 0$ whenever $\Pi$ is non-injective
+      \textup{(ENI Theorem~2.1,~\cite{Beau2026l})}.
+    \end{definition}
+
+    In the spectral realisation~\cite{Beau2026m}, the fibre structure is implemented
+    via the Weil representation $V_\rho$ of
+    $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$ for a prime~$q$.
+    The minimal non-injectivity is the parity involution $c \leftrightarrow q - c$:
+    Weil blocks $\rho_c$ and $\rho_{q-c}$ map to the same effective observable class.
+    The \emph{fibre label} $c \in \{1,\ldots,(q-1)/2\}$
+    indexes blocks within an equivalence class under~$\Pi$.
+
+  \subsection{The BFS coarse-graining hierarchy}
+    \label{sec:bfs}
+
+    \begin{definition}[BFS capacity profile]
+      \label{def:bfs}
+      For a prime~$q$, a fibre label~$c$, and BFS depth $\ell \in \mathbb{N}$,
+      the \emph{BFS capacity profile} $\sigma_c(\ell) \in [0,1]$ is the normalised
+      residual projective capacity of block~$c$ at depth~$\ell$ along the
+      Heisenberg Cayley graph BFS cascade~\cite{Beau2026a1,Beau2026a2}.
+      The \emph{pair observable} is
+      $\sigma_{\mathrm{pair}}(\ell) = \sigma_c(\ell)\cdot\sigma_{q-c}(\ell)$
+      on conjugate pair $(c,q-c)$.
+    \end{definition}
+
+% [Prose $\sim$80 words.
+% Recap BFS construction; why $\sigma_c(\ell)$ is the natural observable
+% at the level of individual fibre labels; note that $\ell$ is a discrete depth
+% parameter and hence the coarse-graining semigroup
+% (Section~\ref{sec:semigroup}) acts on a discrete monoid.]
+
+  \subsection{Three-axis separation}
+    \label{sec:axes}
+
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{lll}
+        \toprule
+        Axis & Parameter & Role \\
+        \midrule
+        Coarse-graining / resolution
+        & $\ell$ (BFS depth/window)
+        & RG-like; carries $I(c;\sigma(\ell))$; this paper \\
+        Thermodynamic / continuum
+        & $q \to \infty$
+        & Continuum limit; Conjecture~4.7 of~\cite{Beau2026q5b} \\
+        Temporal / cascade
+        & $n$ (cascade step)
+        & Projective time; carries $I(n)$ of~\cite{Beau2026pto} \\
+        \bottomrule
+      \end{tabular}
+      \caption{The three distinct axes of the observable hierarchy.
+      The coarse-graining axis~$\ell$ is the support of this paper.
+      The temporal axis~$n$ is the support of PTO~\cite{Beau2026pto}.
+      The continuum axis $q \to \infty$ is a separate thermodynamic limit.}
+      \label{tab:axes}
+    \end{table}
+
+    \begin{remark}[Cascade and coarse-graining are orthogonal]
+      \label{rem:axes}
+      The admissible cascade $U_0 \to U_1 \to \cdots$ defines the temporal axis~$n$
+      and is \emph{not} an RG flow.
+      RG-like behaviour is carried by~$\Pi$ and the semigroup $\{G_{\ell' \leftarrow \ell}\}$
+      on the $\ell$-axis.
+      The cascade \emph{enlarges} the admissible space as temporal ordering advances;
+      an RG flow toward the IR \emph{reduces} effective degrees of freedom.
+      These are distinct phenomena on orthogonal axes.
+    \end{remark}
+
+  \subsection{The coarse-graining semigroup}
+    \label{sec:semigroup}
+
+    \begin{definition}[Coarse-graining channel]
+      \label{def:channel}
+      For $\ell' > \ell$, the \emph{coarse-graining channel}
+      $G_{\ell' \leftarrow \ell} : \sigma(\ell) \mapsto \sigma(\ell')$
+      is the map sending the BFS capacity profile at depth~$\ell$ to the profile
+      at depth~$\ell'$.
+    \end{definition}
+
+    \begin{hypothesis}[\textup{[H-sg]}: semigroup property]
+      \label{hyp:sg}
+      The coarse-graining channels satisfy
+      \begin{equation}
+        \label{eq:sg}
+        G_{\ell_3 \leftarrow \ell_2} \circ G_{\ell_2 \leftarrow \ell_1}
+        = G_{\ell_3 \leftarrow \ell_1}
+        \qquad \text{for all } \ell_1 < \ell_2 < \ell_3.
+      \end{equation}
+    \end{hypothesis}
+
+% [Prose $\sim$80 words.
+% Motivate [H-sg]: plausible from the nested structure of BFS shells.
+% Without [H-sg], DPI still gives step-by-step monotonicity ($\ell$ to $\ell+1$),
+% but the uniform statement for all $\ell' > \ell$ requires composability.
+% [H-sg] is what makes the family RG-like in the strong sense.]
+
+  \subsection{Probability measure on fibre labels}
+    \label{sec:measure}
+
+    \begin{definition}[Fibre-label measure]
+      \label{def:measure}
+      Let $\mu$ be a probability measure on $\{c : 1 \le c \le (q-1)/2\}$.
+      Two canonical choices are used:
+      \begin{enumerate}[label=(\roman*)]
+\item \emph{Uniform}: $\mu(c) = 2/(q-1)$ for all~$c$.
+\item \emph{Triplet-uniform} (for $q \equiv 1 \pmod{3}$):
+$\mu$ uniform on $\{c,\,\omega c,\,\omega^2 c\}$,
+where $\omega$ is a primitive cube root of unity modulo~$q$;
+used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
+      \end{enumerate}
+    \end{definition}
+
+    The choice of~$\mu$ does not affect the monotonicity of $I(c;\sigma(\ell))$
+    (which holds for any fixed measure by DPI),
+    but affects its value and the interpretation of the fixed point.
+
+  \section{Structural Sufficiency and the Markov Property}
+  \label{sec:suff}
+
+  \begin{hypothesis}[\textup{[H-suff]}: structural sufficiency]
+    \label{hyp:suff}
+    For all $\ell' > \ell$, the coarse-graining channel $G_{\ell' \leftarrow \ell}$
+    is conditionally independent of the fibre label~$c$ given $\sigma(\ell)$:
+    \begin{equation}
+      \label{eq:markov}
+      c \;\longrightarrow\; \sigma(\ell) \;\longrightarrow\; \sigma(\ell').
+    \end{equation}
+    That is, $\sigma(\ell)$ is a \emph{sufficient statistic} for~$\sigma(\ell')$
+    with respect to the fibre label~$c$.
+  \end{hypothesis}
+
+  \begin{remark}[\textup{[H-suff]} is not ad hoc]
+    \label{rem:suff-not-adhoc}
+    Hypothesis~\textup{[H-suff]} is not introduced solely to enable the DPI.
+    It is the informational reformulation of an effective closure property already
+    implicit throughout the spectral admissibility programme:
+    if~\textup{[H-suff]} failed --- if BFS dynamics at depth~$\ell'$ re-accessed
+    label information not encoded in~$\sigma(\ell)$ ---
+    then $\sigma_c(\ell)$ would not constitute stable effective observables under~$\Pi$,
+    and the convergence $\sigma_c \to \sigma^*$, the plateau structure
+    across $q \in \{61, 151, 211\}$,
+    and the [H-color] campaign~\cite{Beau2026a35,Beau2026a36}
+    would be structurally very difficult to account for.
+  \end{remark}
+
+  \begin{remark}[Status of~\textup{[H-suff]}]
+    \label{rem:suff-status}
+    Hypothesis~\textup{[H-suff]} is strongly motivated by Remark~\ref{rem:suff-not-adhoc}
+    and is compatible with all known spectral results.
+    It is not yet proved; its proof is listed as open problem~\textup{[O-1]}.
+  \end{remark}
+
+% [Prose $\sim$150 words.
+% Discuss what a proof of [H-suff] would look like: show that the depth-increment
+% kernel $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of~$c$.
+% Suggest a first numerical test: does conditioning on~$c$ in addition
+% to~$\sigma(\ell)$ reduce prediction error for~$\sigma(\ell+1)$?
+% If not, this is empirical evidence for [H-suff].]
+
+  \section{The Fibre-Erasure Theorem}
+  \label{sec:erasure}
+
+  \subsection{The information functional}
+
+    \begin{definition}[Residual fibre information]
+      \label{def:info}
+      The \emph{residual fibre information} at depth~$\ell$ is
+      \begin{equation}
+        \label{eq:mutual}
+        I(c;\sigma(\ell))
+        = H(c) - H(c \mid \sigma(\ell))
+        = H(\sigma(\ell)) - H(\sigma(\ell) \mid c),
+      \end{equation}
+      where $H(\cdot)$ denotes Shannon entropy with respect to measure~$\mu$.
+    \end{definition}
+
+    \begin{remark}[Physical interpretation]
+      \label{rem:info-interp}
+      $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$:
+      the BFS profile carries no information about the microscopic fibre representative.
+      This is the operational statement of fibre erasure under~$\Pi$.
+    \end{remark}
+
+  \subsection{Main theorem}
+
+    \begin{theorem}[Fibre-Erasure Theorem]
+      \label{thm:erasure}
+      Assume hypotheses~\textup{[H-suff]} (Hypothesis~\ref{hyp:suff})
+      and~\textup{[H-sg]} (Hypothesis~\ref{hyp:sg}).
+      Then for all $\ell' > \ell \geq 0$:
+      \begin{equation}
+        \label{eq:erasure}
+        I\bigl(c;\sigma(\ell')\bigr) \;\leq\; I\bigl(c;\sigma(\ell)\bigr).
+      \end{equation}
+      In particular, $I(c;\sigma(\ell))$ is non-increasing in~$\ell$
+      and converges to a limit $I_\infty \geq 0$.
+    \end{theorem}
+
+    \begin{proof}[Proof sketch]
+      By~\textup{[H-suff]}, the triple $(c,\sigma(\ell),\sigma(\ell'))$ forms
+      a Markov chain~\eqref{eq:markov}.
+      The data-processing inequality~\cite{CoverThomas2006}
+      applied to this chain gives~\eqref{eq:erasure} directly.
+      Composability~\textup{[H-sg]} extends the inequality from $\ell' = \ell + 1$
+      to all $\ell' > \ell$.
+    \end{proof}
+
+    \begin{corollary}[Fibre-erasure fixed point]
+      \label{cor:fixedpoint}
+      Under the hypotheses of Theorem~\ref{thm:erasure},
+      $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$.
+      This is the \emph{fibre-erasure fixed point}:
+      the coarse-graining has fully collapsed the fibre-label information.
+    \end{corollary}
+
+    \paragraph{Explicit disclaimer.}
+      Theorem~\ref{thm:erasure} is \emph{not} a $c$-theorem.
+      At the fibre-erasure fixed point, $I_\infty = 0$ does not count any
+      effective degrees of freedom.
+      A $c$-theorem analog requires a separate counting functional;
+      see open problem~\textup{[O-2]}.
+
+  \subsection{Information decomposition and programme connections}
+  \label{sec:decomp}
+
+  By the chain rule for entropy:
+  \begin{equation}
+    \label{eq:decomp}
+    H\bigl(\sigma(\ell)\bigr)
+    = H\bigl(\sigma(\ell) \mid c\bigr) + I\bigl(c;\sigma(\ell)\bigr).
+  \end{equation}
+  Here $I(c;\sigma(\ell))$ is the fibre-erasure functional (Theorem~\ref{thm:erasure}),
+  monotone non-increasing in~$\ell$;
+  $H(\sigma(\ell) \mid c)$ is the intrinsic entropy of the observable conditioned on
+  the fibre label, and is the natural candidate for a counting monotone~\textup{[O-2]}.
+
+  \begin{remark}[Connection to PTO and axis orthogonality]
+    \label{rem:pto}
+    The temporal monotone $I(n) = \sigma_{\mathrm{pair}}(0) - \sigma_{\mathrm{pair}}(n)$
+    of~\cite{Beau2026pto} lives on the temporal axis~$n$ (Table~\ref{tab:axes}).
+    The present $I(c;\sigma(\ell))$ lives on the coarse-graining axis~$\ell$.
+    They measure distinct phenomena on orthogonal axes and should not be conflated.
+  \end{remark}
+
+  \section{Numerical Proxies and Spectral Programme Connections}
+  \label{sec:numerics}
+
+  \subsection{Inter-sector variance as proxy}
+
+    \begin{definition}[Inter-sector variance]
+      \label{def:variance}
+      The \emph{inter-sector variance} at depth~$\ell$ is
+      \begin{equation}
+        \label{eq:variance}
+        \mathcal{V}(\ell)
+        = \mathrm{Var}_c\bigl(\sigma_c(\ell)\bigr)
+        = \mathbb{E}_c\bigl[\sigma_c(\ell)^2\bigr]
+        - \bigl(\mathbb{E}_c[\sigma_c(\ell)]\bigr)^2.
+      \end{equation}
+    \end{definition}
+
+    $\mathcal{V}(\ell) = 0$ is a necessary condition for $I(c;\sigma(\ell)) = 0$,
+    but $\mathcal{V}$ is \emph{not} guaranteed to be monotone in~$\ell$.
+    Non-monotone behaviour of~$\mathcal{V}$ would not contradict Theorem~\ref{thm:erasure};
+    it would indicate that variance is an imperfect surrogate for~$I(c;\sigma(\ell))$.
+
+  \subsection{Triplet variance and \textup{[H-color]}}
+
+    For $q \equiv 1 \pmod{3}$, the \emph{triplet-restricted variance} is
+    \begin{equation}
+      \label{eq:tripvar}
+      \mathcal{V}_{\mathrm{triplet}}(\ell)
+      = \mathrm{Var}\bigl(\sigma_c(\ell),\;
+      \sigma_{\omega c}(\ell),\; \sigma_{\omega^2 c}(\ell)\bigr),
+    \end{equation}
+    averaged over colour triplets.
+
+    \begin{remark}[\textup{[H-color]} as a fibre-erasure statement]
+      \label{rem:hcolor}
+      Hypothesis~[H-color] of~\cite{Beau2026a35,Beau2026a36} asserts
+      $\sigma_c(\ell) = \sigma_{\omega c}(\ell) = \sigma_{\omega^2 c}(\ell)$
+      for $q \equiv 1 \pmod{3}$,
+      which is precisely $\mathcal{V}_{\mathrm{triplet}}(\ell) = 0$ and,
+      under~\textup{[H-suff]}, $I_{\mathrm{triplet}}(c;\sigma(\ell)) = 0$.
+      The fibre-erasure theorem provides the information-theoretic framework within
+      which [H-color] is a special case:
+      the colour label becomes unobservable at the effective level.
+      The triplet-restricted variance is already computable from the
+      $q \in \{61, 151, 211\}$ runs of O32~\cite{Beau2026a36}.
+    \end{remark}
+
+  \subsection{Numerical programme}
+    \label{sec:numprog}
+
+% [PLACEHOLDER $\sim$1 page.
+% Report values of $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
+% as functions of BFS depth~$\ell$ for $q \in \{61, 151, 211\}$.
+% Test whether $\mathcal{V}(\ell)$ is monotone non-increasing in~$\ell$;
+% if not, compute $I(c;\sigma(\ell))$ directly via a histogram-based
+% or $k$-NN mutual-information estimator.
+% Test [H-suff] numerically: compare prediction errors for $\sigma(\ell+1)$
+% with and without conditioning on~$c$.
+% Figures: $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
+% vs $\ell$ for each $q$, with triplet curves highlighted.]
+
+  \section{Open Problems}
+  \label{sec:open}
+
+  \begin{description}[style=nextline]
+\item[\textup{[O-1]} Proof of~\textup{[H-suff]} and~\textup{[H-sg]}.]
+Show that the BFS depth-increment map $G_{\ell+1 \leftarrow \ell}$
+is a Markov kernel on~$\sigma$:
+the transition $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of~$c$.
+This is the load-bearing prerequisite for Theorem~\ref{thm:erasure}.
+A first numerical test: does conditioning on~$c$ in addition to~$\sigma(\ell)$
+reduce prediction error for~$\sigma(\ell+1)$?
+
+\item[\textup{[O-2]} $c$-theorem analog via $H(\sigma(\ell))$.]
+The decomposition~\eqref{eq:decomp} identifies
+$H(\sigma(\ell) \mid c) = H(\sigma(\ell)) - I(c;\sigma(\ell))$
+as a candidate counting monotone.
+Establish its monotonicity in~$\ell$ and verify that its fixed-point value
+counts effective degrees of freedom.
+This would upgrade the fibre-erasure theorem to a genuine $c$-theorem analog.
+
+\item[\textup{[O-3]} Temporal causal structure and emergent light cone.]
+Define the temporal mutual information
+$I_{\mathrm{temp}}(n,k) = I(U_n;\,U_{n+k})$
+and the transfer entropy
+$T(U_n \to U_{n+k}) = I(U_{n+k};\,U_n \mid U_{n-1},\ldots,U_0)$.
+Their decay in~$k$ would yield an operational definition of the emergent forward
+light cone on the temporal axis~$n$, orthogonal to the present paper.
+
+\item[\textup{[O-4]} Axis disambiguation: $\ell$-limit versus $q \to \infty$.]
+Determine whether the fibre-erasure fixed point~$\sigma^*$
+is approached as a limit in~$\ell$ at fixed~$q$
+(a Wilsonian fixed point of the semigroup)
+or only in the limit $q \to \infty$
+(a thermodynamic/continuum limit;
+see Conjecture~4.7 of~\cite{Beau2026q5b}).
+  \end{description}
+
+  \clearpage
+  \bibliographystyle{plain}
+  \bibliography{cosmochrony-bibliography}
+
+\end{document}
