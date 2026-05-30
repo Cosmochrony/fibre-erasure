@@ -44,10 +44,13 @@ in Admissible Non-Injective Projection}
     fibre-information functional $I(c;\sigma(\ell))$,
     where $c$ is a Weil-block fibre label and $\sigma_c(\ell)$ is the BFS capacity
     profile at coarse-graining depth~$\ell$.
-    Conditional on the structural sufficiency hypothesis~\textup{[H-suff]} ---
-    that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$,
-    a condition numerically supported for $q \in \{61, 151, 211\}$
-    (Section~\ref{sec:hsuff-test}) --- the data-processing inequality~\cite{CoverThomas2006}
+    The structural sufficiency hypothesis~\textup{[H-suff]} ---
+    that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$ ---
+    is proved at the level of the BFS rank observable (Proposition~\ref{prop:rank-suff}),
+    where the fibre label is erased identically;
+    for the full Born--Infeld capacity it remains conditional on a single preservation step,
+    numerically supported for $q \in \{61, 151, 211\}$ (Section~\ref{sec:hsuff-test}).
+    Granting~\textup{[H-suff]}, the data-processing inequality~\cite{CoverThomas2006}
     implies that $I(c;\sigma(\ell))$ is non-increasing in~$\ell$:
     fibre information is erased, not created, under admissible coarse-graining.
     This result is \emph{not} a $c$-theorem; it does not count effective degrees of freedom.
@@ -116,8 +119,10 @@ in Admissible Non-Injective Projection}
     is non-increasing in the coarse-graining depth~$\ell$,
     by the data-processing inequality~\cite{CoverThomas2006}.
     The result is conditional, not unconditional:
-    \textup{[H-suff]} is strongly motivated (Remark~\ref{rem:suff-not-adhoc}),
-    numerically supported for $q \in \{61, 151, 211\}$ (Section~\ref{sec:hsuff-test}),
+    \textup{[H-suff]} is proved at the rank level (Proposition~\ref{prop:rank-suff})
+    and strongly motivated (Remark~\ref{rem:suff-not-adhoc});
+    for the full Born--Infeld capacity it is numerically supported
+    for $q \in \{61, 151, 211\}$ (Section~\ref{sec:hsuff-test})
     but not yet proved analytically.
 
     Two structural distinctions are essential before proceeding.
@@ -146,9 +151,10 @@ as the fibre-erasure equilibrium condition (Corollary~\ref{cor:fixedpoint}).
 see open problem~\textup{[O-2]});
 \item hypothesis~\textup{[H-suff]} itself
 (stated and motivated; numerically supported for $q \in \{61, 151, 211\}$;
-analytical proof remains open, see~\textup{[O-1]});
+proved at the rank level in Proposition~\ref{prop:rank-suff},
+full analytical proof open, see~\textup{[O-1a$'$]});
 \item the semigroup hypothesis~\textup{[H-sg]}
-(stated and motivated; see open problem~\textup{[O-1]}).
+(stated and motivated; see open problem~\textup{[O-1b]}).
       \end{enumerate}
 
       \paragraph{Strict disclaimer.}
@@ -390,7 +396,8 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     A permutation-based Spearman test on BFS capacity data for $q \in \{61, 151, 211\}$
     yields no significant $c$-dependence in step-by-step residuals at any tested depth
     (Section~\ref{sec:hsuff-test}), providing numerical evidence for~\textup{[H-suff]}.
-    Analytical proof remains open; see open problem~\textup{[O-1]}.
+    Analytical proof at the rank level is given in Proposition~\ref{prop:rank-suff};
+    the remaining Born--Infeld gap to the full capacity is open, see~\textup{[O-1a$'$]}.
   \end{remark}
 
   \begin{remark}[Why~\textup{[H-suff]} is load-bearing]
@@ -406,19 +413,68 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     it reflects the genuine logical dependence of the monotonicity on the Markov structure.
   \end{remark}
 
-  A proof of~\textup{[H-suff]} would establish that the BFS depth-increment
-  kernel $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of the fibre label~$c$.
-  Structurally, this would follow from the fact that the BFS recursion on the
-  Heisenberg Cayley graph is governed by the group geometry ---
-  shared across all fibre labels up to conjugation ---
-  and the Born-Infeld admissibility constraint,
-  rather than by the specific character of block~$c$.
-  A partial result is already in hand:
-  the conjugation symmetry $\rho_c \cong \rho_{q-c}$ ensures
-  $\sigma_c(\ell) = \sigma_{q-c}(\ell)$ within each conjugate pair,
-  consistent with~\textup{[H-suff]} at the pair level.
-  The full extension requires showing that cross-pair dynamics also factors
-  through~$\sigma(\ell)$.
+  A proof of~\textup{[H-suff]} requires showing that the BFS depth-increment kernel
+  $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of the fibre label~$c$.
+  At the level of the BFS rank observable this is now established.
+
+  \begin{definition}[BFS rank observable]
+    \label{def:rank}
+    Write Heisenberg elements as $(a,b,z)$ with horizontal part~$(a,b)$ and central part~$z$,
+    and let $V_c$ be the representation space of the Weil block~$\rho_c$.
+    For a prime~$q$, a fibre label~$c$, a depth~$\ell$, and any fixed non-zero seed $v_0 \in V_c$,
+    the BFS rank observable is
+    \begin{equation}
+      \label{eq:rank-def}
+      r_c(\ell) = \dim \mathrm{proj}_{V_c}\, \mathrm{span}
+      \bigl\{\, \rho_c(a,b,z)\, v_0 : (a,b,z) \in B_\ell \,\bigr\}.
+    \end{equation}
+  \end{definition}
+
+  \begin{proposition}[Structural sufficiency at the rank level]
+    \label{prop:rank-suff}
+    For every prime~$q$, every fibre label~$c$, and every depth~$\ell$,
+    \begin{equation}
+      \label{eq:rank-l1}
+      r_c(\ell)
+      = \#\bigl\{ (a,b) \in (\mathbb{Z}/q\mathbb{Z})^2 :
+      (a,b,z) \in B_\ell \text{ for some } z \bigr\},
+    \end{equation}
+    the size of the $L^1$-ball reached by the abelianised projection of~$B_\ell$.
+    The right-hand side does not depend on~$c$;
+    hence $r_c(\ell)$ is identical for all fibre labels, $I(c; r(\ell)) \equiv 0$,
+    and~\textup{[H-suff]} holds at the rank level for every label,
+    not only within conjugate pairs.
+  \end{proposition}
+
+  \begin{proof}
+    By Schur's lemma the Heisenberg centre $(0,0,z)$ acts on the irreducible block~$\rho_c$
+    as the scalar $e^{2\pi i c z / q}$, so $\rho_c(a,b,z) v_0 = e^{2\pi i c z / q}\, \rho_c(a,b,0) v_0$.
+    For fixed $(a,b)$ all centre translates are therefore proportional;
+    since $\rho_c$ is unitary, $\rho_c(a,b,0) v_0 \neq 0$ for the non-zero seed,
+    so the coset contributes exactly one direction to~$V_c$, irrespective of~$c$.
+    The rank~\eqref{eq:rank-def} thus equals the number of distinct horizontal cosets~$(a,b)$
+    reached in~$B_\ell$, which is the abelianised footprint~\eqref{eq:rank-l1}
+    and carries no dependence on the central character.
+    Since $r_c(\ell)$ is the same deterministic function of~$\ell$ for all~$c$,
+    it carries no information about the label, so $I(c; r(\ell)) = 0$ at every depth
+    and the chain $c \to r(\ell) \to r(\ell')$ is trivially Markov.
+    The underlying intra-coset structure is established in~\cite{Beau2026a35}.
+  \end{proof}
+
+  Proposition~\ref{prop:rank-suff} supersedes the earlier pair-level observation:
+  the conjugation symmetry $\rho_c \cong \rho_{q-c}$, which gives
+  $\sigma_c(\ell) = \sigma_{q-c}(\ell)$ within a conjugate pair,
+  is the special case of label-blindness restricted to a single orbit.
+  It is also the correct analytical replacement for the spectral route, which is closed:
+  the global Weil-block spectra for $c$ and $\omega c$ are generically distinct~\cite{Beau2026a35},
+  so the capacity~$\sigma_c(\ell)$, strictly finer than the spectrum, cannot be controlled spectrally.
+  The remaining step to the full hypothesis concerns the capacity rather than the rank:
+  $\sigma_c(\ell)$ differs from $r_c(\ell)$ by the Born--Infeld fingerprint of the admissibility
+  pipeline~\cite{Beau2026a1,Beau2026a2}, and one must show that this fingerprint preserves the
+  $c$-independence of the increment.
+  By Proposition~\ref{prop:rank-suff} the rank carries no fibre information,
+  so the entire residual $c$-dependence of~$\sigma_c(\ell)$ must enter through the fingerprint;
+  this is the single open gap, recorded as open problem~\textup{[O-1a$'$]} (Section~\ref{sec:open}).
 
   The full extent of~\textup{[H-suff]} --- including cross-pair dynamics ---
   has been tested numerically for $q \in \{61, 151, 211\}$;
@@ -868,21 +924,38 @@ to all $\ell' > \ell$.
     structural statement rather than a purely formal identity.
 
     \clearpage
-  \section{Open Problems}
+  \section{Rank-Level Closure and Open Problems}
   \label{sec:open}
 
+  The rank-level component of the original problem~\textup{[O-1]} (analytical proof
+  of~\textup{[H-suff]}) is closed.
+  Proposition~\ref{prop:rank-suff} establishes~\textup{[H-suff]} for the BFS rank observable
+  unconditionally: $r_c(\ell)$ is fibre-blind and $I(c; r(\ell)) \equiv 0$, so the chain
+  $c \to r(\ell) \to r(\ell')$ is trivially Markov.
+  The remaining problems below are genuinely open;
+  in particular~\textup{[O-1a$'$]} isolates the single non-combinatorial residue of~\textup{[O-1]},
+  namely whether the Born--Infeld imprint preserves this fibre-blindness for the full capacity.
+
   \begin{description}[style=nextline]
-\item[\textup{[O-1]} Analytical proof of~\textup{[H-suff]}.]
-Establish that the BFS depth-increment map $G_{\ell+1 \leftarrow \ell}$
-is a Markov kernel on~$\sigma$:
-the transition $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of~$c$.
-Numerical evidence is available for $q \in \{61, 151, 211\}$
-via the Spearman residual test of Section~\ref{sec:hsuff-test};
-the analytical proof is the remaining open task.
-The structural route would show that the BFS recursion depends on
-the Heisenberg group geometry --- shared across all fibre labels
-up to conjugation --- and the Born-Infeld admissibility constraint,
-not on the specific character of block~$c$.
+\item[\textup{[O-1a$'$]} Born--Infeld preservation of the rank kernel.]
+Since the rank carries no fibre information (Proposition~\ref{prop:rank-suff}),
+any residual $c$-dependence in the capacity $\sigma_c(\ell)$ of Theorem~\ref{thm:erasure}
+must enter through the Born--Infeld fingerprint by which $\sigma_c(\ell)$ differs from
+$r_c(\ell)$~\cite{Beau2026a1,Beau2026a2,Beau2026a35}.
+The open task is to show that the fingerprint projection preserves the kernel factorisation,
+\begin{equation}
+  \label{eq:bi-kernel}
+  p\bigl(\sigma(\ell+1) \mid \sigma(\ell), c\bigr) = p\bigl(\sigma(\ell+1) \mid \sigma(\ell)\bigr),
+\end{equation}
+so that the fingerprint inherits the $c$-independence already proved for the rank increment.
+This is the single gap between the rank result and the full~\textup{[H-suff]} hypothesis,
+and the same obstruction left open in the pointwise finite-$q$ form
+of~\textup{[H-color]}~\cite{Beau2026a35}.
+Numerically, the O32 colour tests support the preservation through the averaged capacity,
+the effective exponent, and the finite-$q$ variance collapse~\cite{Beau2026a36}.
+Analytically, it suffices to show that the Born--Infeld admissibility weight is invariant
+under central-phase permutation at fixed horizontal coset support;
+such a lemma would close~\textup{[O-1a$'$]} and the pointwise form of~\textup{[H-color]} at once.
 
 \item[\textup{[O-1b]} Proof of the semigroup hypothesis~\textup{[H-sg]}.]
 Show that the coarse-graining channels compose as
