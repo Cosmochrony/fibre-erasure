@@ -154,7 +154,8 @@ see open problem~\textup{[O-2]});
 proved at the rank level in Proposition~\ref{prop:rank-suff},
 full analytical proof open, see~\textup{[O-1a$'$]});
 \item the semigroup hypothesis~\textup{[H-sg]}
-(stated and motivated; see open problem~\textup{[O-1b]}).
+(proved at the rank level in Corollary~\ref{cor:rank-sg}, and there redundant;
+the capacity-level residue is open, see~\textup{[O-1b]}).
       \end{enumerate}
 
       \paragraph{Strict disclaimer.}
@@ -325,6 +326,8 @@ full analytical proof open, see~\textup{[O-1a$'$]});
     Note that the semigroup acts on the space of observable descriptions,
     not on the static substrate~$\Omegaspace$:
     composability is a property of the coarse-graining of effective observables.
+    At the level of the rank observable~\textup{[H-sg]} holds and is moreover redundant
+    (Corollary~\ref{cor:rank-sg}); only its capacity-level form remains hypothetical here.
 
   \subsection{Probability measure on fibre labels}
     \label{sec:measure}
@@ -459,6 +462,31 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     it carries no information about the label, so $I(c; r(\ell)) = 0$ at every depth
     and the chain $c \to r(\ell) \to r(\ell')$ is trivially Markov.
     The underlying intra-coset structure is established in~\cite{Beau2026a35}.
+  \end{proof}
+
+  \begin{corollary}[Rank-level composability and redundancy of~\textup{[H-sg]}]
+    \label{cor:rank-sg}
+    On the pre-saturation window, where $\ell \mapsto r_c(\ell)$ is strictly increasing,
+    the rank coarse-graining channel $G^{r}_{\ell' \leftarrow \ell} : r(\ell) \mapsto r(\ell')$
+    is single-valued and composes,
+    $G^{r}_{\ell_3 \leftarrow \ell_2} \circ G^{r}_{\ell_2 \leftarrow \ell_1}
+    = G^{r}_{\ell_3 \leftarrow \ell_1}$ for all $\ell_1 < \ell_2 < \ell_3$,
+    so~\textup{[H-sg]} holds at the rank level.
+    Moreover~\textup{[H-sg]} is not needed at the rank level:
+    since $I(c; r(\ell)) \equiv 0$ by Proposition~\ref{prop:rank-suff},
+    the inequality $I(c; r(\ell')) \leq I(c; r(\ell))$ holds for every pair $\ell' > \ell$
+    directly, with no step-by-step lifting.
+  \end{corollary}
+
+  \begin{proof}
+    By Proposition~\ref{prop:rank-suff} the value $r_c(\ell)$ is the abelianised $L^1$-ball
+    count~\eqref{eq:rank-l1}, strictly increasing in~$\ell$ until the ball fills
+    $(\mathbb{Z}/q\mathbb{Z})^2$.
+    On this window $\ell$ is recovered from $r(\ell)$, so $G^{r}_{\ell' \leftarrow \ell}$
+    is the single-valued advance of the common deterministic trajectory;
+    advancing from $\ell_1$ to $\ell_2$ and then to $\ell_3$ reaches the same value
+    as advancing directly to $\ell_3$, which is the stated composition.
+    The second statement is immediate from $I(c; r(\ell)) \equiv 0$ at every depth.
   \end{proof}
 
   Proposition~\ref{prop:rank-suff} supersedes the earlier pair-level observation:
@@ -927,14 +955,18 @@ to all $\ell' > \ell$.
   \section{Rank-Level Closure and Open Problems}
   \label{sec:open}
 
-  The rank-level component of the original problem~\textup{[O-1]} (analytical proof
-  of~\textup{[H-suff]}) is closed.
+  The rank-level components of the original problems~\textup{[O-1]} (analytical proof
+  of~\textup{[H-suff]}) and~\textup{[O-1b]} (the semigroup hypothesis~\textup{[H-sg]}) are closed.
   Proposition~\ref{prop:rank-suff} establishes~\textup{[H-suff]} for the BFS rank observable
   unconditionally: $r_c(\ell)$ is fibre-blind and $I(c; r(\ell)) \equiv 0$, so the chain
   $c \to r(\ell) \to r(\ell')$ is trivially Markov.
+  Corollary~\ref{cor:rank-sg} shows that, on the pre-saturation window relevant to the capacity
+  analysis, the rank channel composes and~\textup{[H-sg]} is in fact not needed at the rank level,
+  the all-pair inequality holding directly.
   The remaining problems below are genuinely open;
-  in particular~\textup{[O-1a$'$]} isolates the single non-combinatorial residue of~\textup{[O-1]},
-  namely whether the Born--Infeld imprint preserves this fibre-blindness for the full capacity.
+  in particular~\textup{[O-1a$'$]} isolates the single non-combinatorial residue of~\textup{[O-1]}
+  and~\textup{[O-1b]}, namely whether the Born--Infeld imprint preserves this fibre-blindness
+  for the full capacity.
 
   \begin{description}[style=nextline]
 \item[\textup{[O-1a$'$]} Born--Infeld preservation of the rank kernel.]
@@ -957,15 +989,20 @@ Analytically, it suffices to show that the Born--Infeld admissibility weight is 
 under central-phase permutation at fixed horizontal coset support;
 such a lemma would close~\textup{[O-1a$'$]} and the pointwise form of~\textup{[H-color]} at once.
 
-\item[\textup{[O-1b]} Proof of the semigroup hypothesis~\textup{[H-sg]}.]
-Show that the coarse-graining channels compose as
-$G_{\ell_3 \leftarrow \ell_2} \circ G_{\ell_2 \leftarrow \ell_1}
-= G_{\ell_3 \leftarrow \ell_1}$ for all $\ell_1 < \ell_2 < \ell_3$.
-Without~\textup{[H-sg]}, the data-processing inequality yields
-step-by-step monotonicity (from each application of~\textup{[H-suff]})
-but not the uniform statement of Theorem~\ref{thm:erasure}
-for all $\ell' > \ell$.
-Neither a numerical test nor an analytical proof is currently available.
+\item[\textup{[O-1b]} Born--Infeld composability of the capacity channel.]
+At the rank level, on the pre-saturation window relevant to the capacity analysis,
+the coarse-graining channels compose and~\textup{[H-sg]} is redundant
+(Corollary~\ref{cor:rank-sg}).
+What remains is whether the Born--Infeld fingerprint keeps $\sigma(\ell)$ a sufficient
+Markov state, so that the capacity channels compose as
+$G_{\ell_3 \leftarrow \ell_2} \circ G_{\ell_2 \leftarrow \ell_1} = G_{\ell_3 \leftarrow \ell_1}$
+for all $\ell_1 < \ell_2 < \ell_3$.
+This is a facet of the same Born--Infeld property as~\textup{[O-1a$'$]}:
+both hold once the fingerprint depends only on the current coset support, since that makes
+$\sigma(\ell)$ a sufficient state, $c$-blind in its increment and Markov in~$\ell$.
+Without it, the data-processing inequality still yields step-by-step monotonicity
+from~\textup{[O-1a$'$]}, but not the uniform statement of Theorem~\ref{thm:erasure}
+for all $\ell' > \ell$ at the capacity level.
 
 \item[\textup{[O-2]} $c$-theorem analog via $H(\sigma(\ell))$.]
 The decomposition~\eqref{eq:decomp} identifies
