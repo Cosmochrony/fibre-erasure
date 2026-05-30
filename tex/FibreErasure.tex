@@ -100,7 +100,8 @@ in Admissible Non-Injective Projection}
     track the residual projective capacity of block~$c$ as the BFS cascade advances.
     Numerical campaigns across $q \in \{61, 151, 211, 307\}$ reveal a consistent pattern:
     inter-sector variance collapses as depth increases, and the profiles converge
-    toward a universal profile~$\sigma^*$.
+    toward a universal profile~$\sigma^*$ approached in the limit $q \to \infty$
+    (Section~\ref{sec:axis-disambig}).
     Hypothesis~[H-color]~\cite{Beau2026a35,Beau2026a36} identifies one specific instance
     of this convergence: the $\mathrm{SU}(3)$ colour-triplet sectors
     $\{c, \omega c, \omega^2 c\}$ become indistinguishable at the effective level
@@ -137,7 +138,7 @@ in Admissible Non-Injective Projection}
 for the BFS coarse-graining hierarchy (Theorem~\ref{thm:erasure});
 \item its non-increase under depth-increment, via the data-processing inequality;
 \item the identification of $I(c;\sigma(\ell)) = 0$
-as the fibre-erasure fixed-point condition (Corollary~\ref{cor:fixedpoint}).
+as the fibre-erasure equilibrium condition (Corollary~\ref{cor:fixedpoint}).
       \end{enumerate}
       This paper does \emph{not} establish:
       \begin{enumerate}[label=(\roman*)]
@@ -181,7 +182,7 @@ analytical proof remains open, see~\textup{[O-1]});
     This paper connects these two branches by translating the ENI projection
     entropy into the operational functional~$I(c;\sigma(\ell))$
     and identifying spectral convergence~$\sigma_c \to \sigma^*$
-    as a candidate fibre-erasure fixed point.
+    as the thermodynamic universal profile (Section~\ref{sec:axis-disambig}).
     The PTO paper~\cite{Beau2026pto} handles the complementary temporal axis~$n$
     (Table~\ref{tab:axes});
     the two papers are structurally orthogonal and together constitute
@@ -254,7 +255,7 @@ analytical proof remains open, see~\textup{[O-1]});
         & coarse-graining hierarchy; carries $I(c;\sigma(\ell))$; this paper \\
         Thermodynamic / continuum
         & $q \to \infty$
-        & Continuum limit; Conjecture~4.7 of~\cite{Beau2026q5b} \\
+        & Limit for $\sigma^*$; established numerically (Section~\ref{sec:axis-disambig}) \\
         Temporal / cascade
         & $n$ (cascade step)
         & Projective time; carries $I(n)$ of~\cite{Beau2026pto} \\
@@ -263,7 +264,9 @@ analytical proof remains open, see~\textup{[O-1]});
       \caption{The three distinct axes of the observable hierarchy.
       The coarse-graining axis~$\ell$ is the support of this paper.
       The temporal axis~$n$ is the support of PTO~\cite{Beau2026pto}.
-      The continuum axis $q \to \infty$ is a separate thermodynamic limit.}
+      The continuum axis $q \to \infty$ is the thermodynamic limit in which
+      the fixed point~$\sigma^*$ is approached;
+      Section~\ref{sec:axis-disambig} establishes this numerically.}
       \label{tab:axes}
     \end{table}
 
@@ -276,6 +279,10 @@ analytical proof remains open, see~\textup{[O-1]});
       The cascade \emph{enlarges} the admissible space as temporal ordering advances;
       an RG flow toward the IR \emph{reduces} effective degrees of freedom.
       These are distinct phenomena on orthogonal axes.
+      The fibre-erasure fixed point~$\sigma^*$ lives on the thermodynamic axis:
+      it is approached as $q \to \infty$ with $\mathrm{O}(q^{-1/2})$ corrections,
+      not as a Wilsonian $\ell$-limit at fixed~$q$
+      (Section~\ref{sec:axis-disambig}).
     \end{remark}
 
   \subsection{The coarse-graining semigroup}
@@ -465,17 +472,19 @@ Composability~\textup{[H-sg]} extends the inequality from $\ell' = \ell + 1$
 to all $\ell' > \ell$.
     \end{proof}
 
-    \begin{corollary}[Fibre-erasure fixed point]
+    \begin{corollary}[Fibre-erasure equilibrium condition]
       \label{cor:fixedpoint}
       Under the hypotheses of Theorem~\ref{thm:erasure},
       $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$.
-      This is the \emph{fibre-erasure fixed point}:
-      the coarse-graining has fully collapsed the fibre-label information.
+      This is the \emph{fibre-erasure equilibrium}: the coarse-graining
+      has fully collapsed the fibre-label information.
+      It is realised by the thermodynamic universal profile~$\sigma^*$
+      in the limit $q \to \infty$ (Remark~\ref{rem:fixedpoint-thermo}).
     \end{corollary}
 
     \paragraph{Explicit disclaimer.}
       Theorem~\ref{thm:erasure} is \emph{not} a $c$-theorem.
-      At the fibre-erasure fixed point, $I_\infty = 0$ does not count any
+      At the fibre-erasure equilibrium, $I_\infty = 0$ does not count any
       effective degrees of freedom.
       A $c$-theorem analog requires a separate counting functional;
       see open problem~\textup{[O-2]}.
@@ -639,6 +648,126 @@ to all $\ell' > \ell$.
       consistent with the strongest triplet signal.
 
       \clearpage
+  \subsection{Axis disambiguation: the fixed point is thermodynamic}
+  \label{sec:axis-disambig}
+
+  The question of whether the fibre-erasure fixed point~$\sigma^*$ ---
+  the configuration where $I(c;\sigma(\ell)) = 0$ and fibre-label information
+  is fully collapsed --- is approached as a limit in the coarse-graining
+  depth~$\ell$ at fixed~$q$ (a Wilsonian fixed point of the semigroup
+  $\{G_{\ell' \leftarrow \ell}\}$) or only in the thermodynamic limit $q \to \infty$
+  was investigated numerically on the BFS capacity data for $q \in \{61, 151, 211\}$.
+  Two complementary diagnostics were computed.
+
+  \paragraph{Coefficient of variation.}
+    The scale-free inter-sector spread
+    \begin{equation}
+      \label{eq:cv}
+      \mathrm{CV}(\ell)
+      = \frac{\mathrm{std}_c\bigl(\sigma_c(\ell)\bigr)}
+      {\mathrm{mean}_c\bigl(\sigma_c(\ell)\bigr)}
+    \end{equation}
+    equals $\mathrm{std}(A_c)/\mathrm{mean}(A_c)$, a depth-independent constant,
+    if and only if profiles differ purely by amplitude:
+    $\sigma_c(\ell) = A_c\,\sigma^*(\ell)$.
+    Decrease of~$\mathrm{CV}(\ell)$ to zero would indicate convergence to a common
+    profile, i.e.\ a Wilsonian fixed point at fixed~$q$.
+    The data show~$\mathrm{CV}(\ell)$ starting small at the fitting-window entry
+    ($0.045$--$0.079$ across $q \in \{61, 151, 211\}$)
+    and growing throughout the pre-saturation regime at all three primes
+    (Figure~\ref{fig:o4}, left panels);
+    no plateau or decrease toward zero is observed.
+    This rules out Wilsonian convergence at fixed~$q$.
+
+  \paragraph{Amplitude-ratio test.}
+    For 20 random pairs $(c, c')$, the coefficient of variation of the ratio
+    $\sigma_c(\ell)/\sigma_{c'}(\ell)$ over depth measures shape differences
+    beyond amplitude scaling.
+    Table~\ref{tab:o4} shows this quantity decreasing with~$q$.
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{lrr}
+        \toprule
+        $q$ & ratio-CV mean & ratio-CV std \\
+        \midrule
+        61  & 0.156 & 0.069 \\
+        151 & 0.065 & 0.021 \\
+        211 & 0.062 & 0.025 \\
+        \bottomrule
+      \end{tabular}
+      \caption{Amplitude-ratio CV over 20 random pairs $(c, c')$:
+      coefficient of variation of $\sigma_c(\ell)/\sigma_{c'}(\ell)$
+        over depth in the pre-saturation regime.
+        The decrease with~$q$ is consistent with $\mathrm{O}(q^{-1/2})$
+        shape corrections from U1 universality~\cite{Beau2026a1,Beau2026a2}.}
+      \label{tab:o4}
+    \end{table}
+    The trend from $q = 61$ ($0.156$) to $q \in \{151, 211\}$ ($0.065$--$0.062$)
+    is consistent with $\mathrm{O}(q^{-1/2})$ corrections
+    from U1 universality~\cite{Beau2026a1,Beau2026a2}:
+    at larger~$q$, profiles approach a common shape.
+
+  \paragraph{Cross-$q$ mean profile comparison.}
+    After normalising each mean profile by its value at the fitting-window
+    start~$\ell_0 = n_0$,
+    the profiles for $q = 151$ and $q = 211$ are nearly identical,
+    while $q = 61$ decays more rapidly (Figure~\ref{fig:o4}, right panel).
+    No collapse onto a single $q$-universal curve is observed at finite~$q$.
+
+    \begin{figure}[h]
+      \centering
+      \begin{minipage}[t]{0.56\textwidth}
+        \includegraphics[width=\textwidth]{o4_cv_profiles}
+      \end{minipage}%
+      \hfill
+      \begin{minipage}[t]{0.41\textwidth}
+        \includegraphics[width=\textwidth]{o4_cross_q}
+      \end{minipage}
+      \caption{\textbf{Left:} $\mathrm{CV}(\ell)$ (top row) and sample profiles
+      on a log scale (bottom row) for $q \in \{61,151,211\}$.
+      Blue band: fitting window~$[n_0, n_1]$.
+        $\mathrm{CV}(\ell)$ grows monotonically throughout the pre-saturation regime;
+        the sharp rise beyond the window is a saturation artefact
+        (different $c$ values reach $\sigma_c \to 0$ at different depths).
+        No plateau or decrease toward zero is observed.
+        \textbf{Right:} cross-$q$ mean profiles normalised at~$\ell_0 = n_0$.
+        The $q = 151$ and $q = 211$ profiles are nearly identical;
+        $q = 61$ decays faster.
+        The absence of collapse confirms that $\sigma^*$ requires $q \to \infty$.}
+      \label{fig:o4}
+    \end{figure}
+
+    These results establish that~$\sigma^*$ is a thermodynamic limit object:
+    it is approached as $q \to \infty$ with $\mathrm{O}(q^{-1/2})$ amplitude corrections
+    from U1 universality, not as a Wilsonian $\ell$-limit at fixed~$q$.
+    At finite~$q$, approximate fixed points~$\sigma^*(q)$ exist with $c$-dependent
+    amplitude corrections~$A_c$ that vanish as $q \to \infty$;
+    the universal fixed point requires the continuum limit.
+
+    \begin{remark}[Residual fibre information at finite~$q$; terminology]
+      \label{rem:fixedpoint-thermo}
+      Theorem~\ref{thm:erasure} and Corollary~\ref{cor:fixedpoint} hold for any fixed~$q$:
+      their conclusion is that $I(c;\sigma(\ell))$ is non-increasing; they do not require
+      the equilibrium condition to be reached.
+      At finite~$q$, a residual $I(c;\sigma(\ell)) > 0$ persists at all depths,
+      reflecting the $c$-dependent amplitude corrections~$A_c$.
+
+      A terminological precision is warranted.
+      The \emph{fibre-erasure fixed point} of Corollary~\ref{cor:fixedpoint}
+      is the equilibrium condition $I(c;\sigma) = 0$ on the information functional ---
+      not a fixed point of the semigroup $\{G_{\ell' \leftarrow \ell}\}$,
+      which has no non-trivial fixed point at finite~$q$
+      (all profiles eventually reach $\sigma_c(\ell) \to 0$ by BFS saturation).
+      The universal profile~$\sigma^*$ realising this equilibrium condition is
+      therefore better understood as the \emph{thermodynamic universal profile}:
+      $\sigma^* = \lim_{q \to \infty} \sigma^*(q)$,
+      where $\sigma^*(q)$ are approximate equilibria at finite~$q$
+      with $I(c;\sigma^*(q)) > 0$,
+      approaching exact equilibrium only in the projective continuum limit $q \to \infty$
+      (Conjecture~4.7 of~\cite{Beau2026q5b}).
+    \end{remark}
+
+    \clearpage
   \section{Open Problems}
   \label{sec:open}
 
@@ -681,13 +810,6 @@ $T(U_n \to U_{n+k}) = I(U_{n+k};\,U_n \mid U_{n-1},\ldots,U_0)$.
 Their decay in~$k$ would yield an operational definition of the emergent forward
 light cone on the temporal axis~$n$, orthogonal to the present paper.
 
-\item[\textup{[O-4]} Axis disambiguation: $\ell$-limit versus $q \to \infty$.]
-Determine whether the fibre-erasure fixed point~$\sigma^*$
-is approached as a limit in~$\ell$ at fixed~$q$
-(a Wilsonian fixed point of the semigroup)
-or only in the limit $q \to \infty$
-(a thermodynamic/continuum limit;
-see Conjecture~4.7 of~\cite{Beau2026q5b}).
   \end{description}
 
   \clearpage
