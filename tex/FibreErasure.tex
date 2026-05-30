@@ -912,10 +912,12 @@ to all $\ell' > \ell$.
     \begin{figure}[h]
       \centering
       \includegraphics[width=\textwidth]{o2_h_intra}
-      \caption{Preliminary numerical test of~\textup{[O-2]} for $q = 61$.
+      \caption{Numerical test of~\textup{[O-2]}: $H(\sigma(\ell)\mid c)$ monotonicity
+      for $q \in \{61, 101\}$ (blue and orange respectively).
       \textbf{Left:} $h_{\mathrm{intra}}(\ell)$, proxy for $H(\sigma(\ell)\mid c)$;
-      perfectly monotone non-increasing over the fitting window (blue band),
-        zero violations, $t = -25.5$.
+      both primes are perfectly monotone non-increasing in the pre-saturation window
+        (shaded band), with $t = -25.5$ at $q = 61$ and $t = -33.9$ at $q = 101$.
+        The larger pre-saturation window at $q = 101$ directly reflects the larger~$q$.
         \textbf{Centre:} $h_{\mathrm{inter}}(\ell)$, between-$c$ entropy proxy.
         \textbf{Right:} $\mathrm{CV}_{\mathrm{intra}}(\ell)$; the increase at late depths
         is the staggered-saturation artefact
@@ -926,6 +928,23 @@ to all $\ell' > \ell$.
     These results constitute preliminary numerical evidence that
     $H(\sigma(\ell) \mid c)$ is monotone non-increasing,
     consistent with~\textup{[O-2]}.
+
+  \paragraph{Result for $q = 101$.}
+    On the BFS capacity data for $q = 101$
+    (50 conjugate pairs, $M = 20$ block samples, fitting window~$[3, 10]$),
+    $h_{\mathrm{intra}}(\ell)$ is perfectly monotone non-increasing:
+    zero violations over six consecutive depth increments,
+    linear-trend $t$-statistic $-33.9$,
+    and a reduction of the intra-block standard deviation
+    by a factor $0.021$ (approximately $47\times$) over the window.
+    The slope is $-1.009 \approx -1$,
+    suggesting that $\log\,\mathrm{Var}_{\mathrm{intra}}$ decays near-linearly with BFS depth
+    --- a geometric concentration rate to track at larger~$q$.
+    $\mathrm{CV}_{\mathrm{intra}}$ increases ($0.46 \to 1.45$) for the same
+    staggered-saturation reason as at $q = 61$ (Section~\ref{sec:axis-disambig}).
+    The signal is stronger than at $q = 61$ ($t = -33.9$ vs.\ $-25.5$,
+    seven pre-saturation depths vs.\ five),
+    confirming that the monotone behaviour is not a small-$q$ artefact.
 
   \paragraph{Status of the Gaussian proxy.}
     The quantity $h_{\mathrm{intra}}(\ell)$ is not an exact Shannon entropy
@@ -946,9 +965,9 @@ to all $\ell' > \ell$.
     effective degrees of freedom in the sense required by a $c$-theorem analog.
 
   \paragraph{Role of the multi-$q$ extension.}
-    The planned $q \in \{101, 151, 211\}$ tests are not merely robustness checks.
-    They should determine whether the decay rate of $h_{\mathrm{intra}}(\ell)$
-    is coherent across~$q$, and whether it scales compatibly with the decay
+    With $q \in \{61, 101\}$ now confirmed, the remaining planned tests are $q \in \{151, 211\}$.
+    They should determine whether the slope of $h_{\mathrm{intra}}$ stabilises near $-1$
+    across~$q$ and whether the decay rate scales compatibly with the decay
     of the fibre-erasure functional $I(c;\sigma(\ell))$.
     If the two terms of decomposition~\eqref{eq:decomp}
     decay with compatible exponents, the decomposition becomes an operational
@@ -1026,10 +1045,10 @@ as a candidate counting monotone.
 Establish its monotonicity in~$\ell$ and verify that its fixed-point value
 counts effective degrees of freedom.
 This would upgrade the fibre-erasure theorem to a genuine $c$-theorem analog.
-Preliminary numerical evidence for the monotonicity is available for $q = 61$
-via the intra-block variance proxy (Section~\ref{sec:o2-test});
-analytical proof and cross-$q$ confirmation ($q \in \{101, 151, 211\}$)
-remain open.
+Numerical evidence for the monotonicity is now available for $q \in \{61, 101\}$
+via the intra-block variance proxy (Section~\ref{sec:o2-test}),
+with a consistent slope ${\approx}{-1}$ at $q = 101$;
+cross-$q$ confirmation at $q \in \{151, 211\}$ and an analytical proof remain open.
 
 \item[\textup{[O-3]} Temporal causal structure and emergent light cone.]
 Define the temporal mutual information
@@ -1040,6 +1059,60 @@ Their decay in~$k$ would yield an operational definition of the emergent forward
 light cone on the temporal axis~$n$, orthogonal to the present paper.
 
   \end{description}
+
+  \section{Conclusion}
+  \label{sec:conclusion}
+
+  This paper establishes a monotone fibre-erasure property for the BFS coarse-graining
+  hierarchy on $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$:
+  admissible depth-increment coarse-graining cannot increase the fibre information
+  $I(c;\sigma(\ell))$, so the label $c$ becomes progressively less recoverable from the
+  observable profile as the hierarchy deepens.
+  The result is conditional on the structural sufficiency hypothesis~\textup{[H-suff]}
+  at the full capacity level, and on the semigroup hypothesis~\textup{[H-sg]} for the
+  uniform all-pair statement.
+
+  The central analytical contribution is the identification of a rigorous, unconditional
+  partial closure.
+  Proposition~\ref{prop:rank-suff} shows that the BFS rank observable $r_c(\ell)$ equals
+  the abelianised $L^1$-ball count, independent of $c$, so $I(c;r(\ell)) \equiv 0$ at
+  every depth: fibre erasure is total at the rank level, for every label.
+  Corollary~\ref{cor:rank-sg} shows that the rank channel composes trivially on the
+  pre-saturation window and that~\textup{[H-sg]} is not even needed at that level.
+  Both results follow from a single mechanism (Schur's lemma forcing one direction
+  per horizontal coset, irrespective of the central character~$c$) established
+  in~\cite{Beau2026a35}.
+  This closes the combinatorial content of the original open problems~\textup{[O-1]}
+  and~\textup{[O-1b]}, and reduces the entire residual analytical content to a single
+  question: does the dynamically active central phase of the exact Weil projection
+  contribute only the block-decay amplitude~$C_c$, not the shape~$\ell^{-\delta}$?
+  If so, both~\textup{[O-1a$'$]} and the pointwise finite-$q$ form of~\textup{[H-color]}
+  close at once.
+
+  The evidence is encouraging.
+  At the averaged-exponent level, capacity-level erasure is supported by the universality
+  of the block decay exponent~\cite{Beau2026a16} and the effective colour-triplet
+  form~\textup{[H-color]}$_{\mathrm{eff}}$~\cite{Beau2026a36}.
+  At the profile level, the colour covariance of~\cite{Beau2026a36} has numerical rank one
+  at $q \in \{61, 151, 211, 307\}$: profiles within a colour triplet are co-linear,
+  differing by amplitude alone.
+  The large inter-block variance reported in~\cite{Beau2026a16} is dominated by
+  heterogeneous saturation depth --- a staggered-saturation timing effect
+  (Section~\ref{sec:axis-disambig}) --- and does not constitute evidence of shape
+  non-universality.
+  For the candidate $c$-theorem analog~\textup{[O-2]}, the intra-block conditional-entropy
+  proxy $h_{\mathrm{intra}}(\ell)$ is monotone non-increasing at $q \in \{61, 101\}$,
+  with a consistent slope ${\approx}{-1}$ suggesting geometric concentration of the
+  within-$c$ capacity spread.
+  Tests at $q \in \{151, 211\}$ are planned.
+
+  In the Cosmochrony programme~\cite{Beau2026pto}, the fibre-erasure property complements
+  the capacity-exponent results of the O-series~\cite{Beau2026a1,Beau2026a2} and the
+  quantum-geometric reconstruction of the Q-series.
+  The monotone reduction of fibre information under BFS coarse-graining is consistent
+  with the interpretation of the projective temporal ordering as an emergent direction
+  along which physically distinguishable fibre structure is irreversibly coarse-grained
+  into the admissible observable algebra.
 
   \clearpage
   \bibliographystyle{plain}
