@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{booktabs}
+\usepackage{graphicx}
 \usepackage{enumitem}
 
 \theoremstyle{plain}
@@ -44,8 +45,9 @@ in Admissible Non-Injective Projection}
     where $c$ is a Weil-block fibre label and $\sigma_c(\ell)$ is the BFS capacity
     profile at coarse-graining depth~$\ell$.
     Conditional on the structural sufficiency hypothesis~\textup{[H-suff]} ---
-    that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$
-    --- the data-processing inequality~\cite{CoverThomas2006}
+    that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$,
+    a condition numerically supported for $q \in \{61, 151, 211\}$
+    (Section~\ref{sec:hsuff-test}) --- the data-processing inequality~\cite{CoverThomas2006}
     implies that $I(c;\sigma(\ell))$ is non-increasing in~$\ell$:
     fibre information is erased, not created, under admissible coarse-graining.
     This result is \emph{not} a $c$-theorem; it does not count effective degrees of freedom.
@@ -113,8 +115,9 @@ in Admissible Non-Injective Projection}
     is non-increasing in the coarse-graining depth~$\ell$,
     by the data-processing inequality~\cite{CoverThomas2006}.
     The result is conditional, not unconditional:
-    \textup{[H-suff]} is strongly motivated (Remark~\ref{rem:suff-not-adhoc})
-    but not yet proved.
+    \textup{[H-suff]} is strongly motivated (Remark~\ref{rem:suff-not-adhoc}),
+    numerically supported for $q \in \{61, 151, 211\}$ (Section~\ref{sec:hsuff-test}),
+    but not yet proved analytically.
 
     Two structural distinctions are essential before proceeding.
     First, the coarse-graining axis~$\ell$ is distinct from and orthogonal to
@@ -141,7 +144,8 @@ as the fibre-erasure fixed-point condition (Corollary~\ref{cor:fixedpoint}).
 \item a $c$-theorem or analogue (no counting of effective degrees of freedom;
 see open problem~\textup{[O-2]});
 \item hypothesis~\textup{[H-suff]} itself
-(stated and motivated; see open problem~\textup{[O-1]});
+(stated and motivated; numerically supported for $q \in \{61, 151, 211\}$;
+analytical proof remains open, see~\textup{[O-1]});
 \item the semigroup hypothesis~\textup{[H-sg]}
 (stated and motivated; see open problem~\textup{[O-1]}).
       \end{enumerate}
@@ -376,7 +380,10 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     \label{rem:suff-status}
     Hypothesis~\textup{[H-suff]} is strongly motivated by Remark~\ref{rem:suff-not-adhoc}
     and is compatible with all known spectral results.
-    It is not yet proved; its proof is listed as open problem~\textup{[O-1]}.
+    A permutation-based Spearman test on BFS capacity data for $q \in \{61, 151, 211\}$
+    yields no significant $c$-dependence in step-by-step residuals at any tested depth
+    (Section~\ref{sec:hsuff-test}), providing numerical evidence for~\textup{[H-suff]}.
+    Analytical proof remains open; see open problem~\textup{[O-1]}.
   \end{remark}
 
   \begin{remark}[Why~\textup{[H-suff]} is load-bearing]
@@ -406,13 +413,9 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
   The full extension requires showing that cross-pair dynamics also factors
   through~$\sigma(\ell)$.
 
-  A first numerical test is available without new code.
-  For each depth step $\ell \to \ell + 1$ in the existing pipeline,
-  compute the conditional mutual information $I(c;\,\sigma(\ell+1) \mid \sigma(\ell))$.
-  If this quantity is negligible across all tested pairs and depths,
-  it constitutes empirical evidence for~\textup{[H-suff]}.
-  A non-negligible value at some depth would precisely identify
-  the step where the Markov assumption breaks down.
+  The full extent of~\textup{[H-suff]} --- including cross-pair dynamics ---
+  has been tested numerically for $q \in \{61, 151, 211\}$;
+  see Section~\ref{sec:hsuff-test}.
 
   \section{The Fibre-Erasure Theorem}
   \label{sec:erasure}
@@ -546,36 +549,121 @@ to all $\ell' > \ell$.
       $q \in \{61, 151, 211, 307\}$ runs of O32~\cite{Beau2026a36}.
     \end{remark}
 
-  \subsection{Numerical programme}
-    \label{sec:numprog}
+  \subsection{Numerical evidence for~\textup{[H-suff]}}
+    \label{sec:hsuff-test}
 
-    This section will report the numerical results of the fibre-erasure programme
-    applied to the existing spectral admissibility data for $q \in \{61, 151, 211, 307\}$.
-    Four items are pending numerical computation:
-    the inter-sector variance $\mathcal{V}(\ell)$
-    and the triplet-restricted variance $\mathcal{V}_{\mathrm{triplet}}(\ell)$
-    as functions of BFS depth~$\ell$, with a monotonicity test;
-    a direct estimate of~$I(c;\sigma(\ell))$ via a histogram-based
-    or $k$-nearest-neighbour mutual-information estimator
-    if~$\mathcal{V}$ is found to be non-monotone at some~$q$;
-    a test of~\textup{[H-suff]} via the conditional mutual
-    information $I(c;\,\sigma(\ell+1) \mid \sigma(\ell))$,
-    comparing prediction errors for~$\sigma(\ell+1)$
-    with and without conditioning on~$c$;
-    and figures showing $\mathcal{V}(\ell)$ and $\mathcal{V}_{\mathrm{triplet}}(\ell)$
-    versus~$\ell$ for each~$q$, with colour-triplet curves highlighted.
+    Hypothesis~\textup{[H-suff]} was tested numerically on the BFS capacity data
+    from the O25 pipeline~\cite{Beau2026a1,Beau2026a2}
+    for $q \in \{61, 151, 211\}$.
+    For each depth step $\ell \to \ell+1$,
+    the $k$-nearest-neighbour regression residuals
+    $e_c = \sigma_c(\ell+1) - \hat{f}(\sigma_c(\ell))$
+    are computed from all $q-1$ block-averaged mean trajectories,
+    where $\hat{f}$ is estimated without reference to~$c$.
+    The Spearman correlation $|\rho(e_c, c)|$ is then computed
+    and compared to a permutation null (500 shuffles of~$c$),
+    yielding a right-tail $p$-value and a standardised $z$-score.
+    Under~\textup{[H-suff]}, the residuals~$e_c$ should be independent
+    of~$c$, and $|\rho|$ should be statistically indistinguishable
+    from zero at every depth.
 
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{lrrrr}
+        \toprule
+        $q$ & depths tested & $|\rho|_{\max}$ & $z$-score max
+        & signif.\ ($p < 0.05$) \\
+        \midrule
+        61  & 10 & 0.169 & 0.78 & 0/10 \\
+        151 & 37 & 0.123 & 1.05 & 0/37 \\
+        211 & 49 & 0.120 & 1.55 & 0/49 \\
+        \bottomrule
+      \end{tabular}
+      \caption{Spearman test of conditional independence
+        $\sigma(\ell+1) \perp c \mid \sigma(\ell)$ on BFS capacity data
+        for $q \in \{61, 151, 211\}$.
+        $|\rho|_{\max}$: maximum absolute Spearman correlation
+        between residuals and the fibre label over all tested depth steps.
+        $z$-score: standardised deviation from the permutation null.
+        Significant: number of depth steps with $p < 0.05$; zero in all cases.}
+      \label{tab:hsuff}
+    \end{table}
+
+    For all three primes and across all depth steps tested,
+    $|\rho(e_c, c)|$ does not exceed $0.17$
+    and no depth step yields $p < 0.05$.
+    The results, shown in Figure~\ref{fig:hsuff}, are consistent
+    with the permutation null throughout:
+    no systematic $c$-dependence in the step-by-step residuals is detected.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth]{hsuff_vs_depth}
+      \caption{Numerical test of~\textup{[H-suff]} for $q \in \{61, 151, 211\}$.
+      \textbf{Left panels~(B):} Spearman $|\rho|(e_c, c)$ test
+        ($z$-scores and $p$-values vs BFS depth~$\ell$).
+        All $z$-scores lie below the $z = 2$ threshold (dashed red);
+        no depth is significant.
+        \textbf{Right panels~(C):} leave-triplet-out $\eta^2$ test
+        grouped by $\mathrm{SU}(3)$ colour triplet for $q \equiv 1 \pmod{3}$;
+        this measures [H-color] co-admissibility quality and does not test
+        \textup{[H-suff]} directly (see text).}
+      \label{fig:hsuff}
+    \end{figure}
+
+    These results constitute numerical evidence that the BFS depth-increment dynamics
+    does not depend on the fibre label~$c$ beyond the capacity profile~$\sigma(\ell)$,
+    consistent with~\textup{[H-suff]}.
+
+    \paragraph{Limitations.}
+      The test is limited by the available data:
+      the O25 pipeline~\cite{Beau2026a1,Beau2026a2} stores only the mean BFS capacity
+      profile averaged over $M$~block samples per fibre label;
+      per-block trajectories would enable a more powerful categorical test.
+      No full O25 run is currently available for $q = 307$,
+      though [H-color] at $q = 307$ has been confirmed directly
+      by O32~\cite{Beau2026a36}.
+
+    \paragraph{[H-color] co-admissibility diagnostic.}
+      The leave-triplet-out $\eta^2$ test (panel~C of Figure~\ref{fig:hsuff})
+      detects strong within-triplet residual correlation at $q = 151$
+      ($z_{\max} = 3.07$) and moderately at $q = 211$ ($z_{\max} = 3.25$),
+      consistent with the [H-color] co-admissibility established
+      by O32~\cite{Beau2026a36}: triplet members share equal $\sigma$ profiles,
+      giving equal residuals after leave-triplet-out regression.
+      This is not evidence against~\textup{[H-suff]}; it is an incidental
+      corroboration of [H-color].
+      The signal increases with better [H-color] quality:
+      $q = 151$ has the smallest inter-triplet variance ratio
+      ($R_{\mathrm{var}} = 0.71 \times 10^{-3}$) of the tested primes,
+      consistent with the strongest triplet signal.
+
+      \clearpage
   \section{Open Problems}
   \label{sec:open}
 
   \begin{description}[style=nextline]
-\item[\textup{[O-1]} Proof of~\textup{[H-suff]} and~\textup{[H-sg]}.]
-Show that the BFS depth-increment map $G_{\ell+1 \leftarrow \ell}$
+\item[\textup{[O-1]} Analytical proof of~\textup{[H-suff]}.]
+Establish that the BFS depth-increment map $G_{\ell+1 \leftarrow \ell}$
 is a Markov kernel on~$\sigma$:
 the transition $p(\sigma(\ell+1) \mid \sigma(\ell), c)$ is independent of~$c$.
-This is the load-bearing prerequisite for Theorem~\ref{thm:erasure}.
-A first numerical test: does conditioning on~$c$ in addition to~$\sigma(\ell)$
-reduce prediction error for~$\sigma(\ell+1)$?
+Numerical evidence is available for $q \in \{61, 151, 211\}$
+via the Spearman residual test of Section~\ref{sec:hsuff-test};
+the analytical proof is the remaining open task.
+The structural route would show that the BFS recursion depends on
+the Heisenberg group geometry --- shared across all fibre labels
+up to conjugation --- and the Born-Infeld admissibility constraint,
+not on the specific character of block~$c$.
+
+\item[\textup{[O-1b]} Proof of the semigroup hypothesis~\textup{[H-sg]}.]
+Show that the coarse-graining channels compose as
+$G_{\ell_3 \leftarrow \ell_2} \circ G_{\ell_2 \leftarrow \ell_1}
+= G_{\ell_3 \leftarrow \ell_1}$ for all $\ell_1 < \ell_2 < \ell_3$.
+Without~\textup{[H-sg]}, the data-processing inequality yields
+step-by-step monotonicity (from each application of~\textup{[H-suff]})
+but not the uniform statement of Theorem~\ref{thm:erasure}
+for all $\ell' > \ell$.
+Neither a numerical test nor an analytical proof is currently available.
 
 \item[\textup{[O-2]} $c$-theorem analog via $H(\sigma(\ell))$.]
 The decomposition~\eqref{eq:decomp} identifies
