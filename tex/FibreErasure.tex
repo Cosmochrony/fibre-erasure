@@ -400,7 +400,10 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     yields no significant $c$-dependence in step-by-step residuals at any tested depth
     (Section~\ref{sec:hsuff-test}), providing numerical evidence for~\textup{[H-suff]}.
     Analytical proof at the rank level is given in Proposition~\ref{prop:rank-suff};
-    the remaining Born--Infeld gap to the full capacity is open, see~\textup{[O-1a$'$]}.
+    the remaining Born--Infeld gap to the full capacity is open pointwise, see~\textup{[O-1a$'$]}.
+    At the averaged-exponent level the same direction is supported by the mean universality
+    of the block decay exponent~\cite{Beau2026a16} and the effective colour-triplet
+    form~\textup{[H-color]}$_{\mathrm{eff}}$~\cite{Beau2026a36}.
   \end{remark}
 
   \begin{remark}[Why~\textup{[H-suff]} is load-bearing]
@@ -966,28 +969,38 @@ to all $\ell' > \ell$.
   The remaining problems below are genuinely open;
   in particular~\textup{[O-1a$'$]} isolates the single non-combinatorial residue of~\textup{[O-1]}
   and~\textup{[O-1b]}, namely whether the Born--Infeld imprint preserves this fibre-blindness
-  for the full capacity.
+  for the full capacity pointwise; at the averaged-exponent level it is supported
+  (see~\textup{[O-1a$'$]}).
 
   \begin{description}[style=nextline]
 \item[\textup{[O-1a$'$]} Born--Infeld preservation of the rank kernel.]
 Since the rank carries no fibre information (Proposition~\ref{prop:rank-suff}),
 any residual $c$-dependence in the capacity $\sigma_c(\ell)$ of Theorem~\ref{thm:erasure}
 must enter through the Born--Infeld fingerprint by which $\sigma_c(\ell)$ differs from
-$r_c(\ell)$~\cite{Beau2026a1,Beau2026a2,Beau2026a35}.
-The open task is to show that the fingerprint projection preserves the kernel factorisation,
+$r_c(\ell)$~\cite{Beau2026a1,Beau2026a2}.
+This fingerprint is the dynamically active central phase $\psi_c(\gamma) = e^{2\pi i c \gamma / q}$
+of the exact Weil projection, which couples the central coordinate to the dynamics and makes
+$\sigma_c(\ell)$ genuinely finer than the rank~\cite{Beau2026a16}.
+At the averaged-exponent level, capacity-level erasure is supported by the universality of the
+block decay exponent~\cite{Beau2026a16} and by the effective colour-triplet
+form~\textup{[H-color]}$_{\mathrm{eff}}$ (equality of capacity exponents in the $q \to \infty$
+limit)~\cite{Beau2026a36}.
+The open task is the pointwise statement, that the increment kernel factorises block by block,
 \begin{equation}
   \label{eq:bi-kernel}
   p\bigl(\sigma(\ell+1) \mid \sigma(\ell), c\bigr) = p\bigl(\sigma(\ell+1) \mid \sigma(\ell)\bigr),
 \end{equation}
-so that the fingerprint inherits the $c$-independence already proved for the rank increment.
-This is the single gap between the rank result and the full~\textup{[H-suff]} hypothesis,
-and the same obstruction left open in the pointwise finite-$q$ form
-of~\textup{[H-color]}~\cite{Beau2026a35}.
-Numerically, the O32 colour tests support the preservation through the averaged capacity,
-the effective exponent, and the finite-$q$ variance collapse~\cite{Beau2026a36}.
-Analytically, it suffices to show that the Born--Infeld admissibility weight is invariant
-under central-phase permutation at fixed horizontal coset support;
-such a lemma would close~\textup{[O-1a$'$]} and the pointwise form of~\textup{[H-color]} at once.
+equivalently that the central phase contributes only the amplitude $C_c$, not the shape,
+of the block decay $\sigma_c(\ell) \sim C_c\, \ell^{-\delta}$.
+The finite-$q$ evidence is mixed but encouraging.
+The large inter-block variance of~\cite{Beau2026a16} is dominated by heterogeneous saturation
+depth across blocks --- the staggered-saturation effect of Section~\ref{sec:axis-disambig} ---
+so it conflates amplitude and timing with shape and does not establish shape non-universality.
+In the other direction, the colour covariance of~\cite{Beau2026a36} has numerical rank one:
+the triplet profiles are co-linear, differing by amplitude alone,
+which is positive evidence for the shape universality required here.
+Establishing it analytically would close~\textup{[O-1a$'$]} and the pointwise finite-$q$ form
+of~\textup{[H-color]} together.
 
 \item[\textup{[O-1b]} Born--Infeld composability of the capacity channel.]
 At the rank level, on the pre-saturation window relevant to the capacity analysis,
@@ -1003,6 +1016,8 @@ $\sigma(\ell)$ a sufficient state, $c$-blind in its increment and Markov in~$\el
 Without it, the data-processing inequality still yields step-by-step monotonicity
 from~\textup{[O-1a$'$]}, but not the uniform statement of Theorem~\ref{thm:erasure}
 for all $\ell' > \ell$ at the capacity level.
+As for~\textup{[O-1a$'$]}, only the pointwise form is open;
+it stands or falls with the same shape-universality question.
 
 \item[\textup{[O-2]} $c$-theorem analog via $H(\sigma(\ell))$.]
 The decomposition~\eqref{eq:decomp} identifies
