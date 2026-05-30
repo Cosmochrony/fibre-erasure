@@ -839,8 +839,33 @@ to all $\ell' > \ell$.
     These results constitute preliminary numerical evidence that
     $H(\sigma(\ell) \mid c)$ is monotone non-increasing,
     consistent with~\textup{[O-2]}.
-    Runs for $q \in \{101, 151, 211\}$ are under preparation
-    and will provide the cross-$q$ picture required for a definitive statement.
+
+  \paragraph{Status of the Gaussian proxy.}
+    The quantity $h_{\mathrm{intra}}(\ell)$ is not an exact Shannon entropy
+    unless the within-$c$ distribution of $\sigma_c(\ell)$ is Gaussian.
+    It should be understood as a variance-based entropy proxy.
+    Its monotonicity is nevertheless meaningful: any unimodal within-$c$
+    distribution whose scale concentrates with~$\ell$ has decreasing entropy
+    under standard scale-sensitive estimators.
+    Thus the present test probes concentration of the intrinsic observable
+    spread, not a full non-parametric entropy estimate.
+
+  \paragraph{Counting requirement.}
+    A genuine counting monotone requires more than monotonicity alone.
+    One must also show that $H(\sigma(\ell) \mid c)$ approaches a non-zero,
+    stable, and interpretable value at the approximate equilibrium~$\sigma^*(q)$,
+    with a controlled $q$-dependence.
+    If this limiting value vanished identically, the functional would not count
+    effective degrees of freedom in the sense required by a $c$-theorem analog.
+
+  \paragraph{Role of the multi-$q$ extension.}
+    The planned $q \in \{101, 151, 211\}$ tests are not merely robustness checks.
+    They should determine whether the decay rate of $h_{\mathrm{intra}}(\ell)$
+    is coherent across~$q$, and whether it scales compatibly with the decay
+    of the fibre-erasure functional $I(c;\sigma(\ell))$.
+    If the two terms of decomposition~\eqref{eq:decomp}
+    decay with compatible exponents, the decomposition becomes an operational
+    structural statement rather than a purely formal identity.
 
     \clearpage
   \section{Open Problems}
