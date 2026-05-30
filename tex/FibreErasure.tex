@@ -768,6 +768,81 @@ to all $\ell' > \ell$.
     \end{remark}
 
     \clearpage
+  \subsection{Numerical evidence for~\textup{[O-2]}: conditional entropy monotonicity}
+  \label{sec:o2-test}
+
+  The decomposition~\eqref{eq:decomp} identifies $H(\sigma(\ell) \mid c)$
+  as a candidate counting monotone (open problem~\textup{[O-2]}).
+  A numerical proxy is available from the O25 pipeline
+  extended with squared-profile accumulators:
+  for each pair $(c, q-c)$ and BFS depth~$\ell$,
+  the Bessel-corrected intra-block variance
+  \begin{equation}
+    \label{eq:varintra}
+    \mathrm{Var}_{\mathrm{intra}}(\ell, c)
+    = \frac{M}{M-1}
+    \Bigl(
+    \mathbb{E}_{\mathrm{block}}[\sigma_c(\ell)^2]
+    - \mathbb{E}_{\mathrm{block}}[\sigma_c(\ell)]^2
+    \Bigr)
+  \end{equation}
+  estimates the spread of $\sigma_c(\ell)$ across the $M$ independent block samples
+  for fixed fibre label~$c$.
+  Under a Gaussian approximation,
+  $H(\sigma(\ell) \mid c)
+  \approx \mathrm{mean}_c\bigl[\frac{1}{2}\log(2\pi e\,\mathrm{Var}_{\mathrm{intra}}(\ell, c))\bigr]$,
+  and its monotonicity reduces to that of the proxy
+  \begin{equation}
+    \label{eq:hintra}
+    h_{\mathrm{intra}}(\ell)
+    = \mathrm{mean}_c\!\bigl[\tfrac{1}{2}\log\,\mathrm{Var}_{\mathrm{intra}}(\ell, c)\bigr].
+  \end{equation}
+
+  \paragraph{Result for $q = 61$.}
+    On the BFS capacity data for $q = 61$
+    (30 conjugate pairs, $M = 20$ block samples, fitting window~$[2, 7]$),
+    $h_{\mathrm{intra}}(\ell)$ is perfectly monotone non-increasing
+    over the pre-saturation regime:
+    zero violations over five consecutive depth increments,
+    linear-trend $t$-statistic $-25.5$,
+    and a reduction of the intra-block standard deviation
+    by a factor $0.024$ (approximately $41\times$) over the window.
+    Figure~\ref{fig:o2} shows $h_{\mathrm{intra}}(\ell)$,
+    the between-$c$ entropy proxy $h_{\mathrm{inter}}(\ell)$,
+    and the normalised spread $\mathrm{CV}_{\mathrm{intra}}(\ell)$.
+
+    The normalised spread
+    $\mathrm{CV}_{\mathrm{intra}}(\ell)
+    = \mathrm{mean}_c\bigl[\mathrm{std}_{\mathrm{intra}}/\bar\sigma_c\bigr]$
+    increases over the same range ($0.46 \to 2.05$).
+    This reflects the staggered-saturation artefact identified
+    in Section~\ref{sec:axis-disambig}:
+    at late depths, some of the $M = 20$ blocks reach $\sigma_c = 0$
+    while others have not, inflating relative within-$c$ variance.
+    It is not a violation of~\textup{[O-2]};
+    the absolute proxy $h_{\mathrm{intra}}$ is the correct test statistic.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth]{o2_h_intra}
+      \caption{Preliminary numerical test of~\textup{[O-2]} for $q = 61$.
+      \textbf{Left:} $h_{\mathrm{intra}}(\ell)$, proxy for $H(\sigma(\ell)\mid c)$;
+      perfectly monotone non-increasing over the fitting window (blue band),
+        zero violations, $t = -25.5$.
+        \textbf{Centre:} $h_{\mathrm{inter}}(\ell)$, between-$c$ entropy proxy.
+        \textbf{Right:} $\mathrm{CV}_{\mathrm{intra}}(\ell)$; the increase at late depths
+        is the staggered-saturation artefact
+        (Section~\ref{sec:axis-disambig}), not a violation of~\textup{[O-2]}.}
+      \label{fig:o2}
+    \end{figure}
+
+    These results constitute preliminary numerical evidence that
+    $H(\sigma(\ell) \mid c)$ is monotone non-increasing,
+    consistent with~\textup{[O-2]}.
+    Runs for $q \in \{101, 151, 211\}$ are under preparation
+    and will provide the cross-$q$ picture required for a definitive statement.
+
+    \clearpage
   \section{Open Problems}
   \label{sec:open}
 
@@ -801,6 +876,10 @@ as a candidate counting monotone.
 Establish its monotonicity in~$\ell$ and verify that its fixed-point value
 counts effective degrees of freedom.
 This would upgrade the fibre-erasure theorem to a genuine $c$-theorem analog.
+Preliminary numerical evidence for the monotonicity is available for $q = 61$
+via the intra-block variance proxy (Section~\ref{sec:o2-test});
+analytical proof and cross-$q$ confirmation ($q \in \{101, 151, 211\}$)
+remain open.
 
 \item[\textup{[O-3]} Temporal causal structure and emergent light cone.]
 Define the temporal mutual information
