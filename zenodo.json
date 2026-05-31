@@ -1,7 +1,7 @@
 {
-  "bib_key": "Beau2026FibreErasure",
+  "bib_key": "Beau2026fe",
   "web_url": "https://cosmochrony.org/science/fibre-erasure/",
   "main_tex": "tex/FibreErasure.tex",
-  "zenodo_id": null,
-  "doi": null
+  "zenodo_id": 20466459,
+  "doi": "10.5281/zenodo.20466459"
 }
