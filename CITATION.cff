@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you cite this work, please use the metadata from this file."
+title: "Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection"
+type: software
+authors:
+  - family-names: "Beau"
+    given-names: "Jérôme"
+repository-code: "https://github.com/Cosmochrony/fibre-erasure"
+url: "https://cosmochrony.org/science/fibre-erasure/"
+doi: "10.5281/zenodo.20466459"
+license: "CC-BY-4.0"
+preferred-citation:
+  type: article
+  title: "Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection"
+  authors:
+    - family-names: "Beau"
+      given-names: "Jérôme"
+  year: 2026
+  doi: "10.5281/zenodo.20466459"
+  url: "https://doi.org/10.5281/zenodo.20466459"
