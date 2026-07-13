@@ -1,7 +1,7 @@
 # Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection
 
 This repository contains the source of the **Fibre Erasure** Cosmochrony paper
-[*Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection*](out/FibreErasure.pdf).
+*Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection*.
 
 This work establishes a **fibre-erasure theorem** for the admissible
 coarse-graining hierarchy of the Cosmochrony spectral programme.
