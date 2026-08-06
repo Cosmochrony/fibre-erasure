@@ -1001,9 +1001,15 @@ Since the rank carries no fibre information (Proposition~\ref{prop:rank-suff}),
 any residual $c$-dependence in the capacity $\sigma_c(\ell)$ of Theorem~\ref{thm:erasure}
 must enter through the Born--Infeld fingerprint by which $\sigma_c(\ell)$ differs from
 $r_c(\ell)$~\cite{Beau2026a1,Beau2026a2}.
-This fingerprint is the dynamically active central phase $\psi_c(\gamma) = e^{2\pi i c \gamma / q}$
-of the exact Weil projection, which couples the central coordinate to the dynamics and makes
-$\sigma_c(\ell)$ genuinely finer than the rank~\cite{Beau2026a16}.
+O12's exact rank formula identifies this fingerprint precisely: the increment's rank contribution
+depends on the block label $c=(c_1,c_2,c_3)$ only through the projective pair
+$(\alpha,\beta)=(B/A,C/A) \bmod q$, where $A=c_1+c_2+c_3$, $B=c_2+c_3$, $C=c_3$ are block-only
+constants --- a structural property of the block label itself, not of the visited elements'
+central coordinates.
+The central coordinate is exactly invisible to the increment: it multiplies each fingerprint
+vector by a non-zero unit-modulus scalar and changes neither its frequency nor its span
+rank~\cite{Beau2026a16}, so it contributes nothing --- not amplitude, not shape --- to
+$\sigma_c(\ell)$.
 At the averaged-exponent level, capacity-level erasure is supported by the universality of the
 block decay exponent~\cite{Beau2026a16} and by the effective colour-triplet
 form~\textup{[H-color]}$_{\mathrm{eff}}$ (equality of capacity exponents in the $q \to \infty$
@@ -1016,20 +1022,22 @@ The open task is the pointwise statement, that the increment kernel factorises b
   \label{eq:bi-kernel}
   p\bigl(\sigma(\ell+1) \mid \sigma(\ell), c\bigr) = p\bigl(\sigma(\ell+1) \mid \sigma(\ell)\bigr),
 \end{equation}
-equivalently that the central phase contributes only the amplitude $C_c$, not the shape,
-of the block decay $\sigma_c(\ell) \sim C_c\, \ell^{-\delta}$.
+equivalently that the projective-frequency geometry $(\alpha,\beta)$ contributes only the
+amplitude $C_c$, not the shape, of the block decay $\sigma_c(\ell) \sim C_c\, \ell^{-\delta}$.
 The finite-$q$ evidence is mixed but encouraging.
 The large inter-block variance of~\cite{Beau2026a16} is dominated by heterogeneous saturation
-depth across blocks --- the staggered-saturation effect of Section~\ref{sec:axis-disambig} ---
-so it conflates amplitude and timing with shape and does not establish shape non-universality.
+depth across blocks --- the staggered-saturation effect of Section~\ref{sec:axis-disambig},
+itself a consequence of the $(\alpha,\beta)$ covering geometry --- so it conflates amplitude and
+timing with shape and does not establish shape non-universality.
 In the other direction, the colour covariance of~\cite{Beau2026a36} has numerical rank one:
 the triplet profiles are co-linear, differing by amplitude alone,
 which is positive evidence for the shape universality required here.
 The pointwise finite-$q$ form of~\textup{[H-color]} on the standard graph has been closed
 in this manner by~O31~v1.5~\cite{Beau2026a35}: the single-frequency BI fingerprint structure
-shows that the central phase contributes only the frequency $B$ — preserved by the orbit
-dilation $B \mapsto \omega B$ — and not the shape of the block decay, so capacity erasure
-holds pointwise within each colour orbit.
+shows that the block's $c$-dependence is carried entirely by the frequency $B$ — preserved by
+the orbit dilation $B \mapsto \omega B$ — and not by the central coordinate, and that this
+frequency dependence affects only the amplitude, not the shape of the block decay, so capacity
+erasure holds pointwise within each colour orbit.
 The remaining task for general~$c$, $c'$ (outside the colour orbit) is to extend this
 single-frequency argument; this is the residual content of~\textup{[O-1a$'$]}.
 
@@ -1096,8 +1104,10 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   in~\cite{Beau2026a35}.
   This closes the combinatorial content of the original open problems~\textup{[O-1]}
   and~\textup{[O-1b]}, and reduces the entire residual analytical content to a single
-  question: does the dynamically active central phase of the exact Weil projection
-  contribute only the block-decay amplitude~$C_c$, not the shape~$\ell^{-\delta}$?
+  question: does the block's projective-frequency geometry $(\alpha,\beta)$ --- the structural
+  property of the exact Weil projection through which its $c$-dependence actually enters, the
+  central coordinate itself being exactly inert~\cite{Beau2026a16} --- contribute only the
+  block-decay amplitude~$C_c$, not the shape~$\ell^{-\delta}$?
   If so, both~\textup{[O-1a$'$]} and the pointwise finite-$q$ form of~\textup{[H-color]}
   close at once --- with the caveat that $[\mathrm{H\text{-}color}]_{\mathrm{pointwise}}$
   is already proved independently in O31~\cite{Beau2026a35} (Proposition~4.23),
@@ -1128,10 +1138,15 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   --- a clean separation of the kinematics of erasure from its rate.
   The result also localises fibre identity:
   the abelianised footprint is label-blind,
-  so all distinguishability between fibres is carried by the central phase,
-  that is, by the very central extension that makes the group non-abelian.
-  Coarse-graining erases the label by randomising this phase,
-  an intrinsic decoherence in which the hierarchy itself plays the role of the environment.
+  so all distinguishability between fibres is carried by the projective-frequency pair
+  $(\alpha,\beta)$ that indexes each block's Weil-representation modulation --- a fixed
+  structural property of the block label, not a phase accumulated along the walk: the central
+  coordinate that makes the group non-abelian is itself exactly inert for this
+  observable~\cite{Beau2026a16}.
+  Coarse-graining erases the label as the growing BFS ball exhausts every block's finite covering
+  geometry alike, not by dephasing or averaging any dynamical quantity: there is no phase for the
+  capacity observable to lose, only a bounded combinatorial structure common in kind, if not in
+  detail, to every generic block.
   Read through the gauge interpretation of fibres,
   the fixed point $I(c;\sigma(\ell)) = 0$ (Corollary~\ref{cor:fixedpoint}) is then the statement
   that the effective description is fibre-independent:
