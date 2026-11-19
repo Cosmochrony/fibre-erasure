@@ -430,25 +430,28 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     \label{def:rank}
     Write Heisenberg elements as $(a,b,z)$ with horizontal part~$(a,b)$ and central part~$z$,
     and let $V_c$ be the representation space of the Weil block~$\rho_c$.
-    For a prime~$q$, a fibre label~$c$, a depth~$\ell$, and any fixed non-zero seed $v_0 \in V_c$,
+    For a prime~$q$, a fibre label~$c$ and a depth~$\ell$, with the uniform seed
+    $u_0 = q^{-1/2}(1,\dots,1) \in V_c = \mathbb{C}^q$ used by the O12
+    pipeline~\cite{Beau2026a16} and $\rho_c$ in the Schr\"odinger convention
+    $(\rho_c(a,b,z)f)(x) = e^{2\pi i c(z + b(x-a))/q} f(x-a)$,
     the BFS rank observable is
     \begin{equation}
       \label{eq:rank-def}
-      r_c(\ell) = \dim \mathrm{proj}_{V_c}\, \mathrm{span}
-      \bigl\{\, \rho_c(a,b,z)\, v_0 : (a,b,z) \in B_\ell \,\bigr\}.
+      r_c(\ell) = \dim \mathrm{span}
+      \bigl\{\, \rho_c(a,b,z)\, u_0 : (a,b,z) \in B_\ell \,\bigr\}.
     \end{equation}
   \end{definition}
 
   \begin{proposition}[Structural sufficiency at the rank level]
     \label{prop:rank-suff}
-    For every prime~$q$, every fibre label~$c$, and every depth~$\ell$,
+    For every odd prime~$q$, every fibre label~$c \neq 0$, and every depth~$\ell$,
     \begin{equation}
       \label{eq:rank-l1}
       r_c(\ell)
-      = \#\bigl\{ (a,b) \in (\mathbb{Z}/q\mathbb{Z})^2 :
-      (a,b,z) \in B_\ell \text{ for some } z \bigr\},
+      = \#\bigl\{ b(g) : g \in B_\ell \bigr\}
+      = \min(2\ell + 1,\, q),
     \end{equation}
-    the size of the $L^1$-ball reached by the abelianised projection of~$B_\ell$.
+    the number of distinct second coordinates reached by~$B_\ell$.
     The right-hand side does not depend on~$c$;
     hence $r_c(\ell)$ is identical for all fibre labels, $I(c; r(\ell)) \equiv 0$,
     and~\textup{[H-suff]} holds at the rank level for every label,
@@ -456,18 +459,32 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
   \end{proposition}
 
   \begin{proof}
-    By Schur's lemma the Heisenberg centre $(0,0,z)$ acts on the irreducible block~$\rho_c$
-    as the scalar $e^{2\pi i c z / q}$, so $\rho_c(a,b,z) v_0 = e^{2\pi i c z / q}\, \rho_c(a,b,0) v_0$.
-    For fixed $(a,b)$ all centre translates are therefore proportional;
-    since $\rho_c$ is unitary, $\rho_c(a,b,0) v_0 \neq 0$ for the non-zero seed,
-    so the coset contributes exactly one direction to~$V_c$, irrespective of~$c$.
-    The rank~\eqref{eq:rank-def} thus equals the number of distinct horizontal cosets~$(a,b)$
-    reached in~$B_\ell$, which is the abelianised footprint~\eqref{eq:rank-l1}
-    and carries no dependence on the central character.
+    For the uniform seed,
+    $(\rho_c(a,b,z)u_0)(x) = q^{-1/2}\, e^{2\pi i c(z - ab)/q}\, e^{2\pi i c b x/q}$:
+    each vector is a unimodular multiple of the Fourier character $x \mapsto e^{2\pi i cbx/q}$.
+    Since $c \neq 0$, distinct values of $b$ give distinct, hence orthogonal, characters,
+    while elements with the same $b$ give proportional vectors.
+    The rank is therefore the number of distinct values $b(g)$, $g \in B_\ell$.
+    Each generator changes $b$ by at most one and the powers $Y^{\pm k}$, $k \leq \ell$, lie in
+    $B_\ell$, so these values are the residues of the integers in $[-\ell, \ell]$, of which there
+    are $\min(2\ell+1, q)$.
     Since $r_c(\ell)$ is the same deterministic function of~$\ell$ for all~$c$,
     it carries no information about the label, so $I(c; r(\ell)) = 0$ at every depth
     and the chain $c \to r(\ell) \to r(\ell')$ is trivially Markov.
   \end{proof}
+
+  \begin{remark}[Earlier statement and other seeds]
+    \label{rem:rank-seed}
+    Version~1.3 stated~\eqref{eq:rank-l1} as the number of horizontal cosets $(a,b)$ reached
+    by~$B_\ell$, for any non-zero seed, on the ground that each coset contributes one
+    direction.
+    That step does not give linearly independent directions, and the statement is false for
+    the uniform seed: at $\ell = 1$ the ball reaches five cosets but three values of~$b$, and
+    the rank is three.
+    For a seed other than~$u_0$ no formula is claimed here.
+    As a numerical observation only, a random seed at $q = 13$ gave rank
+    $\min(\#\text{cosets}, q)$ for $\ell \leq 4$; in every case $r_c(\ell) \leq q$.
+  \end{remark}
 
   \begin{corollary}[Rank-level composability and redundancy of~\textup{[H-sg]}]
     \label{cor:rank-sg}
@@ -484,9 +501,8 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
   \end{corollary}
 
   \begin{proof}
-    By Proposition~\ref{prop:rank-suff} the value $r_c(\ell)$ is the abelianised $L^1$-ball
-    count~\eqref{eq:rank-l1}, strictly increasing in~$\ell$ until the ball fills
-    $(\mathbb{Z}/q\mathbb{Z})^2$.
+    By Proposition~\ref{prop:rank-suff} the value $r_c(\ell) = \min(2\ell+1, q)$ is strictly
+    increasing in~$\ell$ until it reaches $q$ at $\ell = (q-1)/2$.
     On this window $\ell$ is recovered from $r(\ell)$, so $G^{r}_{\ell' \leftarrow \ell}$
     is the single-valued advance of the common deterministic trajectory;
     advancing from $\ell_1$ to $\ell_2$ and then to $\ell_3$ reaches the same value
@@ -1085,13 +1101,13 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
 
   The central analytical contribution is the identification of a rigorous, unconditional
   partial closure.
-  Proposition~\ref{prop:rank-suff} shows that the BFS rank observable $r_c(\ell)$ equals
-  the abelianised $L^1$-ball count, independent of $c$, so $I(c;r(\ell)) \equiv 0$ at
-  every depth: fibre erasure is total at the rank level, for every label.
+  Proposition~\ref{prop:rank-suff} shows that, for the uniform seed of the O12 pipeline,
+  the BFS rank observable is $r_c(\ell) = \min(2\ell+1, q)$, the number of distinct second
+  coordinates in the ball, independent of $c$, so $I(c;r(\ell)) \equiv 0$ at every depth.
   Corollary~\ref{cor:rank-sg} shows that the rank channel composes trivially on the
   pre-saturation window and that~\textup{[H-sg]} is not even needed at that level.
-  Both results follow from a single mechanism (Schur's lemma forcing one direction
-  per horizontal coset, irrespective of the central character~$c$).
+  Both results follow from a single mechanism: each seed translate is a single Fourier
+  character fixed by the second coordinate, irrespective of the central character~$c$.
   This closes the combinatorial content of the original open problems~\textup{[O-1]}
   and~\textup{[O-1b]}, and reduces the entire residual analytical content to a single
   question: does the block's projective-frequency geometry $(\alpha,\beta)$ --- the structural
@@ -1125,7 +1141,7 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   and only the amplitude resides in the dynamical Born--Infeld fingerprint
   --- a clean separation of the kinematics of erasure from its rate.
   The result also localises fibre identity:
-  the abelianised footprint is label-blind,
+  the second-coordinate footprint is label-blind,
   so all distinguishability between fibres is carried by the projective-frequency pair
   $(\alpha,\beta)$ that indexes each block's Weil-representation modulation --- a fixed
   structural property of the block label, not a phase accumulated along the walk: the central
