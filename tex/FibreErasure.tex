@@ -105,11 +105,10 @@ in Admissible Non-Injective Projection}
     inter-sector variance collapses as depth increases, and the profiles converge
     toward a universal profile~$\sigma^*$ approached in the limit $q \to \infty$
     (Section~\ref{sec:axis-disambig}).
-    $[\mathrm{H\text{-}color}]$, proved in O31~\cite{Beau2026a35} via the single-frequency
-    fingerprint structure, identifies one specific instance
-    of this convergence: the $\mathrm{SU}(3)$ colour-triplet sectors
-    $\{c, \omega c, \omega^2 c\}$ become indistinguishable at the effective level
-    for $q \equiv 1 \pmod{3}$.
+    The colour-triplet hypothesis $[\mathrm{H\text{-}color}]$, that the sectors
+    $\{c, \omega c, \omega^2 c\}$ become indistinguishable for $q \equiv 1 \pmod{3}$,
+    would be one instance of this pattern; its O31 derivation is
+    withdrawn~\cite{Beau2026a35}, and nothing below rests on it.
 
     This paper addresses the following question:
     can the qualitative ENI no-go and the quantitative spectral convergence be connected
@@ -408,8 +407,6 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     At the averaged-exponent level the same direction is supported by the mean universality
     of the block decay exponent~\cite{Beau2026a16} and the effective colour-triplet
     form~\textup{[H-color]}$_{\mathrm{eff}}$~\cite{Beau2026a36}.
-    At the exact pointwise level, $[\mathrm{H\text{-}color}]_{\mathrm{pointwise}}$ is proved
-    analytically in O31~\cite{Beau2026a35} (Proposition~4.23).
   \end{remark}
 
   \begin{remark}[Why~\textup{[H-suff]} is load-bearing]
@@ -470,7 +467,6 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
     Since $r_c(\ell)$ is the same deterministic function of~$\ell$ for all~$c$,
     it carries no information about the label, so $I(c; r(\ell)) = 0$ at every depth
     and the chain $c \to r(\ell) \to r(\ell')$ is trivially Markov.
-    The underlying intra-coset structure is established in~\cite{Beau2026a35}.
   \end{proof}
 
   \begin{corollary}[Rank-level composability and redundancy of~\textup{[H-sg]}]
@@ -502,9 +498,9 @@ used in the [H-color] context~\cite{Beau2026a35,Beau2026a36}.
   the conjugation symmetry $\rho_c \cong \rho_{q-c}$, which gives
   $\sigma_c(\ell) = \sigma_{q-c}(\ell)$ within a conjugate pair,
   is the special case of label-blindness restricted to a single orbit.
-  It is also the correct analytical replacement for the spectral route, which is closed:
-  the global Weil-block spectra for $c$ and $\omega c$ are generically distinct~\cite{Beau2026a35},
-  so the capacity~$\sigma_c(\ell)$, strictly finer than the spectrum, cannot be controlled spectrally.
+  It also replaces a spectral route, which is not available: no result of the corpus controls
+  the capacity~$\sigma_c(\ell)$ through Weil-block spectra, the O31 spectral material being
+  withdrawn or under re-audit~\cite{Beau2026a35}.
   The remaining step to the full hypothesis concerns the capacity rather than the rank:
   $\sigma_c(\ell)$ differs from $r_c(\ell)$ by the Born--Infeld fingerprint of the admissibility
   pipeline~\cite{Beau2026a1,Beau2026a2}, and one must show that this fingerprint preserves the
@@ -639,8 +635,8 @@ to all $\ell' > \ell$.
 
     \begin{remark}[\textup{[H-color]} as a fibre-erasure statement]
       \label{rem:hcolor}
-      $[\mathrm{H\text{-}color}]$, proved analytically in O31~\cite{Beau2026a35}
-      (Proposition~4.23) and tested numerically in O32~\cite{Beau2026a36}, asserts
+      $[\mathrm{H\text{-}color}]$, whose O31 derivation is withdrawn~\cite{Beau2026a35}
+      and which O32 tested numerically~\cite{Beau2026a36}, asserts
       $\sigma_c(\ell) = \sigma_{\omega c}(\ell) = \sigma_{\omega^2 c}(\ell)$
       for $q \equiv 1 \pmod{3}$,
       which is precisely $\mathcal{V}_{\mathrm{triplet}}(\ell) = 0$ and,
@@ -1016,10 +1012,7 @@ $\sigma_c(\ell)$.
 At the averaged-exponent level, capacity-level erasure is supported by the universality of the
 block decay exponent~\cite{Beau2026a16} and by the effective colour-triplet
 form~\textup{[H-color]}$_{\mathrm{eff}}$ (equality of capacity exponents in the $q \to \infty$
-limit)~\cite{Beau2026a36}; at the exact pointwise level on the standard Cayley graph,
-$[\mathrm{H\text{-}color}]_{\mathrm{pointwise}}$ is proved analytically in
-O31~\cite{Beau2026a35} (Proposition~4.23) via the single-frequency BI fingerprint structure
-($B = c_1 b_1 + c_2 b_2 + c_3 b_3$ and the orbit dilation $B \mapsto \omega B$).
+limit)~\cite{Beau2026a36}.
 The open task is the pointwise statement, that the increment kernel factorises block by block,
 \begin{equation}
   \label{eq:bi-kernel}
@@ -1035,14 +1028,9 @@ timing with shape and does not establish shape non-universality.
 In the other direction, the colour covariance of~\cite{Beau2026a36} has numerical rank one:
 the triplet profiles are co-linear, differing by amplitude alone,
 which is positive evidence for the shape universality required here.
-The pointwise finite-$q$ form of~\textup{[H-color]} on the standard graph has been closed
-in this manner by~O31~v1.5~\cite{Beau2026a35}: the single-frequency BI fingerprint structure
-shows that the block's $c$-dependence is carried entirely by the frequency $B$ — preserved by
-the orbit dilation $B \mapsto \omega B$ — and not by the central coordinate, and that this
-frequency dependence affects only the amplitude, not the shape of the block decay, so capacity
-erasure holds pointwise within each colour orbit.
-The remaining task for general~$c$, $c'$ (outside the colour orbit) is to extend this
-single-frequency argument; this is the residual content of~\textup{[O-1a$'$]}.
+The O31 claim that this question was closed within each colour orbit is
+withdrawn~\cite{Beau2026a35}; the residual content of~\textup{[O-1a$'$]} is the
+$c$-independence of the capacity for general labels $c$, $c'$.
 
 \item[\textup{[O-1b]} Born--Infeld composability of the capacity channel.]
 At the rank level, on the pre-saturation window relevant to the capacity analysis,
@@ -1103,8 +1091,7 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   Corollary~\ref{cor:rank-sg} shows that the rank channel composes trivially on the
   pre-saturation window and that~\textup{[H-sg]} is not even needed at that level.
   Both results follow from a single mechanism (Schur's lemma forcing one direction
-  per horizontal coset, irrespective of the central character~$c$) established
-  in~\cite{Beau2026a35}.
+  per horizontal coset, irrespective of the central character~$c$).
   This closes the combinatorial content of the original open problems~\textup{[O-1]}
   and~\textup{[O-1b]}, and reduces the entire residual analytical content to a single
   question: does the block's projective-frequency geometry $(\alpha,\beta)$ --- the structural
@@ -1112,9 +1099,7 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   central coordinate itself being exactly inert~\cite{Beau2026a16} --- contribute only the
   block-decay amplitude~$C_c$, not the shape~$\ell^{-\delta}$?
   If so, both~\textup{[O-1a$'$]} and the pointwise finite-$q$ form of~\textup{[H-color]}
-  close at once --- with the caveat that $[\mathrm{H\text{-}color}]_{\mathrm{pointwise}}$
-  is already proved independently in O31~\cite{Beau2026a35} (Proposition~4.23),
-  so this route closes~\textup{[O-1a$'$]} without relying on~\textup{[H-color]}.
+  close at once.
 
   The evidence is encouraging.
   At the averaged-exponent level, capacity-level erasure is supported by the universality
