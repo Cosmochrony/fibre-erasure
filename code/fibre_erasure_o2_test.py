@@ -32,7 +32,7 @@ where Var_inter(ell) = Var_c(sigma_c_mean[:, ell]).
 And a normalised proxy (CV_intra):
     CV_intra(ell) = mean_c[ sqrt(Var_intra(ell,c)) / sigma_c_mean(ell,c) ]
 measures the within-c spread relative to the profile magnitude.
-A decreasing CV_intra indicates non-trivial erasure of within-c uncertainty,
+A decreasing CV_intra indicates concentration of the within-c spread,
 not merely the trivial collapse of all values toward zero.
 
 REQUIRES
@@ -180,7 +180,7 @@ def plot_results(results: dict, out_dir: Path) -> None:
         (r'$H_{\mathrm{inter}}(\ell)$ proxy',
          r'$\frac{1}{2}\log\,\mathrm{Var}_c(\bar\sigma_c(\ell))$',
          'h_inter'),
-        (r'$\mathrm{CV}_{\mathrm{intra}}(\ell)$  (non-trivial erasure)',
+        (r'$\mathrm{CV}_{\mathrm{intra}}(\ell)$  (within-$c$ relative spread)',
          r'$\overline{\mathrm{std}_{\mathrm{intra}}/\bar\sigma_c}$',
          'cv_intra'),
     ]

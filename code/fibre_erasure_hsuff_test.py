@@ -18,13 +18,13 @@ complementary statistics on the k-NN regression residuals
                                        --synthetic mode).
   (B) |Spearman corr(e, c)|        -- monotone dependence of residuals on c.
                                        Works with any number of samples per c.
-  (C) eta_squared(e_loto | triplet)  -- variance fraction explained by SU(3)
-                                       colour-triplet membership, using
+  (C) eta_squared(e_loto | triplet)  -- variance fraction explained by
+                                       cube-root-orbit membership, using
                                        leave-triplet-out (LOTO) k-NN residuals.
                                        Computed when q ≡ 1 (mod 3).
                                        LOTO prevents the k-NN artifact that
-                                       arises when [H-color] holds: if triplet
-                                       members have nearly equal sigma(l) they
+                                       would arise if orbit
+                                       members had nearly equal sigma(l) they
                                        are close neighbours, making standard
                                        residuals spuriously correlated within
                                        triplets.  LOTO excludes triplet peers
@@ -177,7 +177,7 @@ def hsuff_test_depth(sigma_l: np.ndarray, sigma_lp1: np.ndarray,
     if tri_applicable:
         triplet = triplet_class(c, omega, int(q))
         # Use leave-triplet-out residuals to prevent k-NN leakage between
-        # triplet peers when [H-color] makes their sigma(l) values nearly equal.
+        # triplet peers whose sigma(l) values happen to be close.
         loto_res = _loto_residuals(sigma_l, sigma_lp1, triplet, k_neighbors)
         rng_c = np.random.default_rng(seed + 2)
         eta_t_obs = eta_squared(loto_res, triplet)
@@ -204,7 +204,7 @@ def _loto_residuals(sigma_l: np.ndarray, sigma_lp1: np.ndarray,
     of sigma_l[i] drawn exclusively from samples j with group[j] != group[i].
     This prevents prediction leakage between group members that would
     otherwise create spurious within-group residual correlation when group
-    members share similar sigma(l) values (e.g., colour triplets under [H-color]).
+    members share similar sigma(l) values (e.g., members of one cube-root orbit).
     """
     n = len(sigma_l)
     e_hat = np.empty(n)
@@ -360,8 +360,8 @@ def plot_results(df: pd.DataFrame, out_path: Path) -> None:
         ax.axhline(0.0, color='k', linewidth=0.5)
         ax.axhline(2.0, color='r', linestyle=':', linewidth=0.8)
         ax.set_ylabel(r'$z$ score')
-        ax.set_title(r'(C) $\eta^2$ by triplet — [H-color] co-admissibility'
-                     '\n(high $z$ supports [H-color], not a [H-suff] violation)')
+        ax.set_title(r'(C) $\eta^2$ by cube-root orbit'
+                     '\n(measurement only; carries no colour content)')
         ax.legend(fontsize=8)
         ax.grid(True, alpha=0.3)
         ax_p = axes[1, col]
@@ -433,19 +433,13 @@ def make_summary(df: pd.DataFrame) -> dict:
         consistencies.append(entry['spearman_consistent'])
         entry['consistent_with_hsuff'] = bool(all(consistencies))
 
-        # Triplet test (C) measures [H-color] co-admissibility quality, NOT [H-suff].
-        # When [H-color] holds, triplet members share equal sigma profiles, so LOTO
-        # residuals within triplets are nearly equal and eta^2 exceeds the permutation
-        # null.  A high tri_z therefore SUPPORTS [H-color] rather than indicating a
-        # [H-suff] violation.  The field below records the triplet result separately.
+        # Triplet test (C) groups labels by cube-root orbit.  It does not test
+        # [H-suff], and it carries no colour content: under the O12 sampling law the
+        # mean profiles of distinct labels are i.i.d. (O32 2.0), so no within-orbit
+        # correlation is expected.  A high tri_z is recorded as an unexplained
+        # measurement, not as support for [H-color].
         if 'tri_consistent' in entry:
-            entry['hcolor_coadmissibility_signal'] = not entry['tri_consistent']
-            if entry['hcolor_coadmissibility_signal']:
-                entry['hcolor_note'] = (
-                    'tri_consistent=False: strong within-triplet residual '
-                    'correlation detected, consistent with [H-color] co-admissibility. '
-                    'This does NOT indicate a [H-suff] violation.'
-                )
+            entry['orbit_eta2_exceeds_null'] = not entry['tri_consistent']
 
         summary[int(q)] = entry
     return summary
