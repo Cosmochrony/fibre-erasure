@@ -7,6 +7,7 @@
 \usepackage{amsthm}
 \usepackage{doi}
 \usepackage{hyperref}
+\hypersetup{pdftitle={Projective Information Loss and Fibre Erasure in Admissible Non-Injective Projection},pdfauthor={J\'er\^ome Beau},pdfsubject={FibreErasure, version 2.0}}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -33,6 +34,7 @@ in Admissible Non-Injective Projection}
 \small \texttt{jerome.beau@cosmochrony.org}}
 \date{2026}
 
+\setlength{\emergencystretch}{1.5em}
 \begin{document}
 
   \maketitle
@@ -66,8 +68,6 @@ in Admissible Non-Injective Projection}
     hypothesis~[H-color].
   \end{abstract}
 
-% TODO: add CoverThomas2006 to cosmochrony-bibliography.bib
-% Cover, T.M., Thomas, J.A.: Elements of Information Theory, 2nd ed. Wiley (2006).
 
   \smallskip
   \noindent\textbf{Keywords.}
@@ -99,7 +99,7 @@ in Admissible Non-Injective Projection}
     It identifies the structure of information loss but says nothing about how this loss
     is distributed across a hierarchy of resolutions.
 
-    The Cosmochrony spectral programme~\cite{Beau2026a1,Beau2026a2} provides a concrete
+    The Cosmochrony spectral admissibility programme~\cite{Beau2026a1note} provides a concrete
     realisation of this hierarchy.
     For each prime~$q$, the BFS capacity profiles~$\sigma_c(\ell)$, indexed by
     Weil-block fibre label~$c$ and coarse-graining depth~$\ell$,
@@ -188,7 +188,7 @@ from other sets of labels~\cite{Beau2026a36}.
     ENI~\cite{Beau2026l} and Foundation~\cite{Beau2026m} provide the foundational input:
     the non-injective projection~$\Pi$, the Weil-fibre realisation,
     and the projection entropy~$S_\Pi$.
-    The spectral admissibility programme~\cite{Beau2026a1,Beau2026a2} provides the
+    The spectral admissibility programme~\cite{Beau2026a1note} provides the
     operational hierarchy: the BFS capacity profiles~$\sigma_c(\ell)$ and their
     numerical campaigns. O12~\cite{Beau2026a16} states that the profile is invariant under
     scaling of the whole character block by any unit, and O32~\cite{Beau2026a36} deduces from it
@@ -239,7 +239,7 @@ from other sets of labels~\cite{Beau2026a36}.
       For a prime~$q$, a fibre label~$c$, and BFS depth $\ell \in \mathbb{N}$,
       the \emph{BFS capacity profile} $\sigma_c(\ell) \in [0,1]$ is the normalised
       residual projective capacity of block~$c$ at depth~$\ell$ along the
-      Heisenberg Cayley graph BFS cascade~\cite{Beau2026a1,Beau2026a2}.
+      Heisenberg Cayley graph BFS cascade~\cite{Beau2026a16}.
       The \emph{pair observable} is
       $\sigma_{\mathrm{pair}}(\ell) = \sigma_c(\ell)\cdot\sigma_{q-c}(\ell)$
       on conjugate pair $(c,q-c)$.
@@ -247,7 +247,7 @@ from other sets of labels~\cite{Beau2026a36}.
 
     For a prime~$q$, the Heisenberg group $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$
     carries a Cayley graph whose BFS shells~$B_\ell$ grow as $|B_\ell| \sim \ell^4$
-    in the Heisenberg regime~\cite{Beau2026a1}.
+    in the Heisenberg regime~\cite{Beau2026a16}.
     The capacity profile~$\sigma_c(\ell)$ measures the residual Gram-Schmidt span
     of Weil block~$\rho_c$ not yet exhausted at shell depth~$\ell$:
     it starts at $\sigma_c(0) = 1$ and decreases toward~$0$
@@ -261,7 +261,8 @@ from other sets of labels~\cite{Beau2026a36}.
 
     \begin{table}[h]
       \centering
-      \begin{tabular}{lll}
+      \small
+      \begin{tabular}{p{0.24\textwidth}p{0.2\textwidth}p{0.46\textwidth}}
         \toprule
         Axis & Parameter & Role \\
         \midrule
@@ -514,7 +515,7 @@ no colour content.
   the capacity~$\sigma_c(\ell)$ through Weil-block spectra, the O31 spectral material being
   withdrawn or under re-audit~\cite{Beau2026a35}.
   The step from the rank to the capacity concerns the three-character fingerprint of the
-  admissibility pipeline~\cite{Beau2026a1,Beau2026a2}, by which $\sigma_c(\ell)$ differs
+  admissibility pipeline~\cite{Beau2026a16}, by which $\sigma_c(\ell)$ differs
   from~$r_c(\ell)$.
   For the O12 capacity under the campaign sampling law this step is settled in law by O32
   (Section~\ref{sec:o12-application}); it was open problem~\textup{[O-1a$'$]}
@@ -571,10 +572,11 @@ to all $\ell' > \ell$.
 
     \begin{corollary}[Label-independence condition]
       \label{cor:fixedpoint}
-      Under the hypotheses of Theorem~\ref{thm:erasure},
-      $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$, and then
-      $I(c;\sigma(\ell')) = 0$ for every $\ell' > \ell$: the observable carries no fibre-label
-      information from depth~$\ell$ on.
+      Assume the hypotheses of Theorem~\ref{thm:erasure}.
+      Then the residual information vanishes, $I(c;\sigma(\ell)) = 0$, if and only if
+      $\sigma(\ell) \perp c$.
+      In that case the information also vanishes at every greater depth: from depth~$\ell$ on, the
+      observable carries no fibre-label information.
       For the O12 capacity under the campaign sampling law, $I(c;\sigma(\ell)) = 0$ holds already
       at $\ell = 0$ (Section~\ref{sec:o12-application}): this is absence of label information in
       the observable, not a state reached by erasure.
@@ -1184,7 +1186,7 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   label is present at some depth.
 
   In the Cosmochrony programme~\cite{Beau2026pto}, the conditional monotonicity complements
-  the capacity-exponent results of the O-series~\cite{Beau2026a1,Beau2026a2} and the
+  the capacity-exponent results of the O-series~\cite{Beau2026a1note} and the
   quantum-geometric reconstruction of the Q-series.
   It concerns the resolution axis~$\ell$, while projective temporal ordering (PTO) concerns
   the temporal ordering of admissible projected capacity along the temporal axis~$n$.
