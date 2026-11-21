@@ -2,7 +2,7 @@
 fibre_erasure_hsuff_test.py
 
 Numerical test of hypothesis [H-suff] for the Fibre Erasure programme
-(Paper FibreErasure_1_0, Open problem [O-1]).
+(FibreErasure 2.0, Section "Numerical consistency check of [H-suff]").
 
 Under [H-suff], the BFS depth-increment kernel
     p(sigma(l+1) | sigma(l), c) = p(sigma(l+1) | sigma(l))

@@ -1,31 +1,28 @@
 """
 fibre_erasure_o4_axis.py
 
-Numerical investigation of open problem [O-4]: axis disambiguation.
+Descriptive diagnostics of the spread of the mean capacity profiles across fibre labels
+(FibreErasure 2.0, Section "Axis disambiguation and finite-sample dispersion").
 
-Determines whether the fibre-erasure fixed point sigma* is approached as a
-limit in the coarse-graining depth ell at fixed q (a Wilsonian fixed point
-of the semigroup), or only in the thermodynamic limit q -> inf.
+STATUS (FibreErasure 2.0): version 1.x read these diagnostics as a test of whether a
+"fibre-erasure fixed point sigma*" is reached at fixed q or only as q -> inf, with
+label-dependent amplitudes A_c. That reading is withdrawn: for the O12 capacity under the
+campaign sampling law, the law of the profile is the same for every label at every q
+(O32 2.0, Corollary 5), so differences between mean profiles are sampling dispersion.
+The script now only describes the spread; its verdict strings are descriptive.
 
-The discriminating diagnostic is the coefficient of variation
+The diagnostic is the coefficient of variation
 
     CV(ell) = std_c(sigma_c(ell)) / mean_c(sigma_c(ell))
 
 evaluated as a function of BFS depth ell for each prime q.
 
-  If sigma_c(ell) = A_c * sigma*(ell) for a c-dependent amplitude A_c
-  and a c-independent profile sigma*(ell), then CV(ell) = std(A_c)/mean(A_c)
-  is CONSTANT across ell: the profiles have equal exponents but different
-  amplitudes.  No convergence to a common profile at fixed q.
+  If sigma_c(ell) = A_c * f(ell), then CV(ell) = std(A_c)/mean(A_c) is constant across ell
+  (the converse does not hold). CV(ell) is reported as a description of the spread of the
+  mean profiles; it is not read as a test of a fixed point of the coarse-graining semigroup.
 
-  If CV(ell) -> 0 before BFS saturation (i.e. before mean(sigma) -> 0),
-  then the profiles converge to a common sigma*(ell): genuine Wilsonian
-  fixed point at fixed q.
-
-A secondary diagnostic is the cross-q mean profile comparison:
-after normalising by their value at a reference depth, do the mean profiles
-for different q collapse onto the same curve?  Collapse = universal profile;
-no collapse = profiles differ at finite q and only agree as q -> inf.
+A secondary diagnostic compares the normalised mean profiles of different primes; it
+describes the q-dependence of the common profile, not differences between labels.
 
 Expected data format (same as fibre_erasure_hsuff_test.py):
     q_<q>.npz
@@ -75,9 +72,9 @@ def make_synthetic(q_list, n_depths=80, seed=42,
 
     mode='amplitude': sigma_c(l) = A_c * f(l), where A_c differs across c
                       and f(l) is the same for all c.
-                      -> CV constant, no Wilsonian fixed point.
-    mode='converge':  sigma_c(l) -> common sigma*(l) for large l.
-                      -> CV -> 0, Wilsonian fixed point present.
+                      -> CV constant.
+    mode='converge':  sigma_c(l) -> a common profile for large l.
+                      -> CV -> 0.
     """
     rng = np.random.default_rng(seed)
     data = {}
@@ -125,9 +122,7 @@ def cv_trend(cv: np.ndarray, mean: np.ndarray,
     Assess whether CV is flat, decreasing, or increasing in the pre-saturation regime.
 
     The pre-saturation regime is defined by mean_sigma > sat_threshold.
-    A flat CV confirms amplitude-only variation (universal exponent, c-dependent
-    amplitudes); the fixed point sigma* requires q -> inf.
-    A significantly decreasing CV suggests convergence at fixed q.
+    The verdict describes the trend of the spread only.
     """
     pre_sat = (mean > sat_threshold) & ~np.isnan(cv)
     idx = np.where(pre_sat)[0]
@@ -147,11 +142,11 @@ def cv_trend(cv: np.ndarray, mean: np.ndarray,
     cv_end = float(np.nanmean(cv[idx[-3:]]))
     rel_change = (cv_end - cv_start) / max(cv_start, 1e-8)
     if t_stat < -2.0 and rel_change < -0.10:
-        verdict = 'decreasing — candidate Wilsonian fixed point at fixed q'
+        verdict = 'decreasing spread'
     elif t_stat > 2.0 and rel_change > 0.10:
-        verdict = 'increasing — profiles diverging (likely noise-dominated at late depths)'
+        verdict = 'increasing spread (staggered saturation at late depths)'
     else:
-        verdict = 'flat — amplitude-only variation; fixed point likely requires q->inf'
+        verdict = 'flat spread'
     return {
         'slope': slope, 'slope_se': se, 't_stat': t_stat,
         'norm_slope': norm_slope,
@@ -198,11 +193,11 @@ def amplitude_ratio_test(sigma: np.ndarray, mean: np.ndarray,
     rcv_mean = float(np.mean(ratio_cvs))
     rcv_std = float(np.std(ratio_cvs))
     if rcv_mean < 0.02:
-        verdict = 'ratio CV very small: same shape, amplitude-only variation confirmed'
+        verdict = 'ratio CV small'
     elif rcv_mean < 0.10:
-        verdict = 'ratio CV moderate: predominantly same shape, minor exponent differences'
+        verdict = 'ratio CV moderate'
     else:
-        verdict = 'ratio CV large: significant shape differences between c profiles'
+        verdict = 'ratio CV large'
     return {
         'ratio_cv_mean': rcv_mean, 'ratio_cv_std': rcv_std,
         'n_pairs_tested': len(ratio_cvs),
@@ -215,7 +210,7 @@ def cross_q_comparison(data: dict) -> pd.DataFrame:
     Compare normalised mean profiles across q values.
 
     For each q, normalise sigma_bar(ell) by its value at n0 (start of window).
-    If profiles collapse onto the same curve, sigma* is q-independent.
+    Describes the q-dependence of the common mean profile.
     Returns a DataFrame with columns: q, ell, sigma_bar_norm.
     """
     rows = []
@@ -285,7 +280,7 @@ def plot_results(data: dict, df_cross: pd.DataFrame, out_dir: Path) -> None:
     ax.axhline(1.0, color='k', linewidth=0.5)
     ax.set_xlabel(r'$\ell - \ell_0$ (depth relative to fitting window start)')
     ax.set_ylabel(r'$\bar{\sigma}(\ell) / \bar{\sigma}(\ell_0)$ (normalised)')
-    ax.set_title(r'Cross-$q$ mean profile comparison (collapse = $q$-universal $\sigma^*$)')
+    ax.set_title(r'Cross-$q$ mean profiles, normalised at the window start')
     ax.legend()
     ax.grid(True, alpha=0.3)
     fig2.tight_layout()

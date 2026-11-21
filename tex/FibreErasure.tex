@@ -46,14 +46,15 @@ in Admissible Non-Injective Projection}
     profile at coarse-graining depth~$\ell$.
     The structural sufficiency hypothesis~\textup{[H-suff]} ---
     that $\sigma(\ell)$ is a sufficient statistic for the hierarchy beyond~$\ell$ ---
-    is proved at the level of the BFS rank observable (Proposition~\ref{prop:rank-suff}),
-    where the rank does not depend on the fibre label.
+    is proved at the level of the BFS rank observable for the uniform seed of the O12 pipeline
+    (Proposition~\ref{prop:rank-suff}), where the rank does not depend on the fibre label.
     Granting~\textup{[H-suff]}, the data-processing inequality~\cite{CoverThomas2006}
     implies that $I(c;\sigma(\ell))$ is non-increasing in~$\ell$.
     This result is \emph{not} a $c$-theorem; it does not count effective degrees of freedom.
     For the O12 three-character capacity under the sampling law of the O-series campaigns,
-    O32 shows that the distribution of the profile does not depend on the
-    label~\cite{Beau2026a36}.
+    the profile is invariant under multiplication of the whole character block by any
+    unit~\cite{Beau2026a16,Beau2026a36}, and O32 deduces that its distribution does not depend on
+    the label~\cite{Beau2026a36}.
     Hence $I(c;\sigma(\ell)) = 0$ at every depth, \textup{[H-suff]} holds for that observable,
     and the erasure bound reads $0 \leq 0$.
     This is independence in law, not equality of the profiles for each draw of the auxiliary
@@ -79,8 +80,7 @@ in Admissible Non-Injective Projection}
   spectral admissibility;
   projective information loss;
   Weil representation;
-  Heisenberg group;
-  [H-color]
+  Heisenberg group
 
   \newpage
   \tableofcontents
@@ -114,8 +114,8 @@ in Admissible Non-Injective Projection}
     derivation is withdrawn~\cite{Beau2026a35}, and nothing below rests on it.
 
     This paper addresses the following question:
-    can the qualitative ENI no-go and the quantitative spectral convergence be connected
-    by a principled information-theoretic structure?
+    can the qualitative ENI no-go be connected to the BFS coarse-graining hierarchy of the
+    capacity profiles by a principled information-theoretic structure?
     We show that the answer is yes, conditional on the structural sufficiency
     hypothesis~\textup{[H-suff]}:
     the residual fibre-information functional $I(c;\sigma(\ell))$
@@ -144,8 +144,9 @@ in Admissible Non-Injective Projection}
 \item a monotone information functional $I(c;\sigma(\ell))$
 for the BFS coarse-graining hierarchy (Theorem~\ref{thm:erasure});
 \item its non-increase under depth-increment, via the data-processing inequality;
-\item the identification of $I(c;\sigma(\ell)) = 0$
-as the fibre-erasure equilibrium condition (Corollary~\ref{cor:fixedpoint}).
+\item the characterisation of $I(c;\sigma(\ell)) = 0$ as label independence of the observable
+(Corollary~\ref{cor:fixedpoint}), which for the O12 capacity holds already at depth~$0$ and is
+not reached by erasure.
       \end{enumerate}
       This paper does \emph{not} establish:
       \begin{enumerate}[label=(\roman*)]
@@ -189,8 +190,9 @@ from other sets of labels~\cite{Beau2026a36}.
     and the projection entropy~$S_\Pi$.
     The spectral admissibility programme~\cite{Beau2026a1,Beau2026a2} provides the
     operational hierarchy: the BFS capacity profiles~$\sigma_c(\ell)$ and their
-    numerical campaigns, including O32~\cite{Beau2026a36}, which proves that the O12 profile
-    is invariant under scaling of the whole character block by any unit.
+    numerical campaigns. O12~\cite{Beau2026a16} states that the profile is invariant under
+    scaling of the whole character block by any unit, and O32~\cite{Beau2026a36} deduces from it
+    that, under the campaign sampling law, the law of the profile does not depend on the label.
     This paper connects these two branches by translating the ENI projection
     entropy into the operational functional~$I(c;\sigma(\ell))$.
     The PTO paper~\cite{Beau2026pto} handles the complementary temporal axis~$n$
@@ -381,14 +383,15 @@ no colour content.
     then $\sigma_c(\ell)$ would not constitute stable effective observables under~$\Pi$.
     More precisely,~\textup{[H-suff]} is the condition that the BFS observable~$\sigma(\ell)$
     constitutes a \emph{complete summary} of the fibre structure at resolution~$\ell$:
-    the projection~$\Pi$ has already collapsed the relevant fibre information
-    at each level of the hierarchy, and no deeper BFS step retrieves it.
-    This is exactly what the non-injectivity of~$\Pi$ (ENI~\cite{Beau2026l}) demands
-    at the effective level: fibre information is not gradually re-injected
-    as coarse-graining proceeds, but is collapsed once and for all by~$\Pi$.
-    In this sense,~\textup{[H-suff]} makes explicit, in information-theoretic language,
-    a structural commitment already implicit in the programme's use
-    of~$\sigma_c(\ell)$ as an effective observable.
+    if it holds, no deeper BFS step retrieves label information that $\sigma(\ell)$ does not
+    already carry.
+    This is a hypothesis-level motivation, consistent with the non-injectivity of~$\Pi$
+    (ENI~\cite{Beau2026l}), not a derivation: ENI does not imply~\textup{[H-suff]}, and no
+    mechanism by which~$\Pi$ would remove label information along the hierarchy is established.
+    For the O12 capacity under the campaign sampling law,~\textup{[H-suff]} holds for a different
+    reason: the label is absent from the observable at every depth, by the unit-scaling invariance
+    of the profile and the uniform law of the auxiliary characters
+    (Section~\ref{sec:o12-application}).
   \end{remark}
 
   \begin{remark}[Status of~\textup{[H-suff]}]
@@ -538,7 +541,8 @@ no colour content.
       \label{rem:info-interp}
       $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$:
       the BFS profile carries no information about the microscopic fibre representative.
-      This is the operational statement of fibre erasure under~$\Pi$.
+      This is a statement of label independence; it says nothing about how, or whether, that
+      independence is reached along the hierarchy.
     \end{remark}
 
   \subsection{Main theorem}
@@ -565,20 +569,20 @@ Composability~\textup{[H-sg]} extends the inequality from $\ell' = \ell + 1$
 to all $\ell' > \ell$.
     \end{proof}
 
-    \begin{corollary}[Fibre-erasure equilibrium condition]
+    \begin{corollary}[Label-independence condition]
       \label{cor:fixedpoint}
       Under the hypotheses of Theorem~\ref{thm:erasure},
-      $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$.
-      This is the \emph{fibre-erasure equilibrium}: the observable carries no fibre-label
-      information.
-      For the O12 capacity under the campaign sampling law it holds at every depth and every
-      prime (Section~\ref{sec:o12-application}).
+      $I(c;\sigma(\ell)) = 0$ if and only if $\sigma(\ell) \perp c$, and then
+      $I(c;\sigma(\ell')) = 0$ for every $\ell' > \ell$: the observable carries no fibre-label
+      information from depth~$\ell$ on.
+      For the O12 capacity under the campaign sampling law, $I(c;\sigma(\ell)) = 0$ holds already
+      at $\ell = 0$ (Section~\ref{sec:o12-application}): this is absence of label information in
+      the observable, not a state reached by erasure.
     \end{corollary}
 
     \paragraph{Explicit disclaimer.}
       Theorem~\ref{thm:erasure} is \emph{not} a $c$-theorem.
-      At the fibre-erasure equilibrium, $I_\infty = 0$ does not count any
-      effective degrees of freedom.
+      When $I_\infty = 0$, the limit does not count any effective degrees of freedom.
       A $c$-theorem analog requires a separate counting functional;
       see open problem~\textup{[O-2]}.
 
@@ -590,12 +594,15 @@ to all $\ell' > \ell$.
     $(\mathbb{Z}/q\mathbb{Z})^*$, draws with $c + c_2 + c_3 = 0$ being rejected; this is the
     sampling law of the O-series campaigns from which the data of
     Section~\ref{sec:numerics} are taken.
-    O32~\cite{Beau2026a36} proves that the profile is invariant under multiplication of the
-    whole block by any unit, and deduces that, under this law, the distribution of the entire
-    profile $(\sigma(\ell))_{\ell}$ is the same for every label.
+    The profile is invariant under multiplication of the whole block by any unit (O12's exact
+    rank formula~\cite{Beau2026a16}; O32, Theorem~4~\cite{Beau2026a36}), and O32 deduces
+    (Corollary~5) that, under this law, the distribution of the entire profile
+    $(\sigma(\ell))_{\ell}$ is the same for every label.
 
     \begin{proposition}[Absence of label information in the O12 capacity]
       \label{prop:o12-zero}
+      Let $\sigma$ be any function of the rank sequence of the O12 three-character fingerprint
+      (in particular the normalised increment $\Delta r/|S|$ used by the campaigns).
       Under the campaign sampling law and for any label measure~$\mu$, the label $c$ is
       independent of the profile $(\sigma(\ell))_{\ell}$, and of the mean of any number of
       independently drawn profiles.
@@ -607,7 +614,8 @@ to all $\ell' > \ell$.
     \end{proposition}
 
     \begin{proof}
-      The law of the profile does not depend on~$c$~\cite{Beau2026a36}, so the joint law of
+      The law of the rank sequence, hence of any function of it, does not depend
+      on~$c$~\cite{Beau2026a36}, so the joint law of
       $(c, (\sigma(\ell))_\ell)$ is the product $\mu \otimes \nu$, with $\nu$ the common law.
       Means of independent profiles and products of independent profiles inherit this
       independence.
@@ -617,14 +625,18 @@ to all $\ell' > \ell$.
 
     Three qualifications fix the scope of Proposition~\ref{prop:o12-zero}.
     First, it is independence in law: for a single draw of auxiliary characters, the profiles
-    of distinct labels differ in general, and they coincide exactly only when the whole block
-    is scaled by a common unit~\cite{Beau2026a36}.
+    of distinct labels need not coincide; scaling the whole block by a common unit is one
+    sufficient condition for equality~\cite{Beau2026a36}, not a necessary one.
     Second, it concerns this observable and this sampling law; it says nothing about the
     capacity of other constructions, seeds or label laws, for which \textup{[H-suff]} remains a
     hypothesis.
     Third, it demonstrates no erasure: the label is absent from the observable at every
     depth, so Theorem~\ref{thm:erasure}, whose proof stands under its hypotheses, yields only
     the trivial bound in this application.
+    Fourth, Definition~\ref{def:bfs} normalises $\sigma_c(\ell)$ to $[0,1]$ with
+    $\sigma_c(0) = 1$, whereas the stored campaign profiles are $\Delta r_\ell/|S_\ell|$, which
+    are not so normalised; the proposition holds for either, since both are functions of the
+    rank sequence.
 
   \subsection{Information decomposition and programme connections}
   \label{sec:decomp}
@@ -670,7 +682,7 @@ to all $\ell' > \ell$.
     Non-monotone behaviour of~$\mathcal{V}$ would not contradict Theorem~\ref{thm:erasure};
     it would indicate that variance is an imperfect surrogate for~$I(c;\sigma(\ell))$.
 
-  \subsection{Triplet variance and \textup{[H-color]}}
+  \subsection{Triplet variance over cube-root orbits}
 
     For $q \equiv 1 \pmod{3}$, the \emph{triplet-restricted variance} is
     \begin{equation}
@@ -679,7 +691,7 @@ to all $\ell' > \ell$.
       = \mathrm{Var}\bigl(\sigma_c(\ell),\;
       \sigma_{\omega c}(\ell),\; \sigma_{\omega^2 c}(\ell)\bigr),
     \end{equation}
-    averaged over colour triplets.
+    averaged over cube-root orbits $\{c, \omega c, \omega^2 c\}$.
 
     \begin{remark}[The triplet variance carries no colour content]
       \label{rem:hcolor}
@@ -687,7 +699,9 @@ to all $\ell' > \ell$.
       $\sigma_c(\ell) = \sigma_{\omega c}(\ell) = \sigma_{\omega^2 c}(\ell)$
       for $q \equiv 1 \pmod{3}$; its O31 derivation is withdrawn~\cite{Beau2026a35}.
       For the O12 capacity under the campaign sampling law, the mean profiles of distinct labels
-      are independent and identically distributed (Proposition~\ref{prop:o12-zero}), so
+      computed from independent draws are independent and identically distributed (O32,
+      Corollary~6~\cite{Beau2026a36}); the O25 pipeline from which the present data are taken
+      draws each label from its own random stream~\cite{Beau2026a29}, so the condition holds. Hence
       $\mathcal{V}_{\mathrm{triplet}}$ has the same law for a cube-root orbit as for any other
       three labels.
       O32 shows on this basis that its colour-triplet campaign could not test
@@ -695,11 +709,11 @@ to all $\ell' > \ell$.
       finite-sample dispersion, and the present paper draws no colour conclusion from it.
     \end{remark}
 
-  \subsection{Numerical evidence for~\textup{[H-suff]}}
+  \subsection{Numerical consistency check of~\textup{[H-suff]}}
     \label{sec:hsuff-test}
 
-    Hypothesis~\textup{[H-suff]} was tested numerically on the BFS capacity data
-    from the O25 pipeline~\cite{Beau2026a1,Beau2026a2}
+    Hypothesis~\textup{[H-suff]} was checked numerically on the BFS capacity data
+    from the O25 pipeline~\cite{Beau2026a29}
     for $q \in \{61, 151, 211\}$.
     For each depth step $\ell \to \ell+1$,
     the $k$-nearest-neighbour regression residuals
@@ -745,7 +759,8 @@ to all $\ell' > \ell$.
     \begin{figure}[h]
       \centering
       \includegraphics[width=\textwidth]{../code/hsuff_vs_depth}
-      \caption{Numerical test of~\textup{[H-suff]} for $q \in \{61, 151, 211\}$.
+      \caption{Numerical consistency check of~\textup{[H-suff]} for $q \in \{61, 151, 211\}$
+      (not independent evidence; see text).
       \textbf{Left panels~(B):} Spearman $|\rho|(e_c, c)$ test
         ($z$-scores and $p$-values vs BFS depth~$\ell$).
         All $z$-scores lie below the $z = 2$ threshold (dashed red);
@@ -763,23 +778,28 @@ to all $\ell' > \ell$.
 
     \paragraph{Limitations.}
       The test is limited by the available data:
-      the O25 pipeline~\cite{Beau2026a1,Beau2026a2} stores only the mean BFS capacity
+      the O25 pipeline~\cite{Beau2026a29} stores only the mean BFS capacity
       profile averaged over $M$~block samples per fibre label;
       per-block trajectories would enable a more powerful categorical test.
       No full O25 run is currently available for $q = 307$.
 
     \paragraph{Leave-triplet-out $\eta^2$ test.}
       The leave-triplet-out $\eta^2$ test (panel~C of Figure~\ref{fig:hsuff}) groups labels by
-      cube-root orbit and reports maximal standardised scores $z_{\max} = 3.07$ at $q = 151$ and
-      $z_{\max} = 3.25$ at $q = 211$, each a maximum over all tested depths.
-      Version~1.3 read these scores as a corroboration of~$[\mathrm{H\text{-}color}]$; that
-      reading is withdrawn.
-      Under Proposition~\ref{prop:o12-zero} the mean profiles of distinct labels are independent
-      and identically distributed, so no within-orbit correlation is expected, and O32 shows that
+      cube-root orbit.
+      Its pipeline summary gives, per prime, the number of depths with $p < 0.05$, an excess
+      score over the number expected by chance, and a verdict:
+      at $q = 61$, 3 of 10 depths, excess $2.5\sigma$, $z_{\max} = 2.03$;
+      at $q = 151$, 6 of 37 depths, excess $3.1\sigma$, flagged, $z_{\max} = 3.07$;
+      at $q = 211$, 4 of 49 depths, excess $1.0\sigma$, consistent with the null, $z_{\max} = 3.25$.
+      Version~1.3 reported only $z_{\max}$ at $q \in \{151, 211\}$ and read these scores as a
+      corroboration of~$[\mathrm{H\text{-}color}]$; that reading is withdrawn.
+      The mean profiles of distinct labels are independent and identically distributed (see
+      Remark~\ref{rem:hcolor}), so no within-orbit correlation is expected, and O32 shows that
       the orbit grouping carries no colour content~\cite{Beau2026a36}.
-      The scores are not explained here: the maximum over many depths and the seeding of the
-      pipeline are candidate sources that have not been examined.
-      They are reported as measurements and are not used.
+      At $q = 211$ the excess is within what the number of depths explains.
+      At $q = 151$, and to a lesser degree at $q = 61$, it is not explained here; the seeding of
+      the pipeline is a candidate source that has not been examined.
+      The scores are reported as measurements and are not used.
 
       \clearpage
   \subsection{Axis disambiguation and finite-sample dispersion}
@@ -802,11 +822,11 @@ to all $\ell' > \ell$.
       = \frac{\mathrm{std}_c\bigl(\sigma_c(\ell)\bigr)}
       {\mathrm{mean}_c\bigl(\sigma_c(\ell)\bigr)}
     \end{equation}
-    equals $\mathrm{std}(A_c)/\mathrm{mean}(A_c)$, a depth-independent constant,
-    if and only if profiles differ purely by amplitude:
-    $\sigma_c(\ell) = A_c\,\sigma^*(\ell)$.
-    Decrease of~$\mathrm{CV}(\ell)$ to zero would indicate convergence to a common
-    profile, i.e.\ a Wilsonian fixed point at fixed~$q$.
+    equals the depth-independent constant $\mathrm{std}(A_c)/\mathrm{mean}(A_c)$ if the profiles
+    differ purely by amplitude, $\sigma_c(\ell) = A_c\,\sigma^*(\ell)$; a constant CV does not
+    conversely imply that form.
+    The diagnostic describes the spread of the mean profiles; it is not read here as a test of a
+    fixed point of the coarse-graining semigroup.
     The data show~$\mathrm{CV}(\ell)$ starting small at the fitting-window entry
     ($0.045$--$0.079$ across $q \in \{61, 151, 211\}$)
     and growing throughout the pre-saturation regime at all three primes
@@ -885,19 +905,20 @@ to all $\ell' > \ell$.
       \label{rem:fixedpoint-thermo}
       Theorem~\ref{thm:erasure} and Corollary~\ref{cor:fixedpoint} hold for any fixed~$q$:
       their conclusion is that $I(c;\sigma(\ell))$ is non-increasing; they do not require
-      the equilibrium condition to be reached.
+      the label-independence condition to be reached.
       Version~1.3 stated that a residual $I(c;\sigma(\ell)) > 0$ persists at finite~$q$.
       For the O12 capacity under the campaign sampling law this is false:
       $I(c;\sigma(\ell)) = 0$ at every depth (Proposition~\ref{prop:o12-zero}).
 
       A terminological precision is warranted.
-      The \emph{fibre-erasure fixed point} of Corollary~\ref{cor:fixedpoint}
-      is the equilibrium condition $I(c;\sigma) = 0$ on the information functional ---
+      The condition $I(c;\sigma) = 0$ of Corollary~\ref{cor:fixedpoint} is a condition on the
+      information functional ---
       not a fixed point of the semigroup $\{G_{\ell' \leftarrow \ell}\}$,
       which has no non-trivial fixed point at finite~$q$
       (all profiles eventually reach $\sigma_c(\ell) \to 0$ by BFS saturation).
-      For the O12 observable this condition is met by the common law of the profile at every
-      finite~$q$; the large-$q$ limit of that common profile, which Conjecture~4.7
+      For the O12 observable the condition holds at every depth, depth~$0$ included, because the
+      law of the profile is common to all labels at every finite~$q$; it is not reached along the
+      hierarchy. The large-$q$ limit of that common profile, which Conjecture~4.7
       of~\cite{Beau2026q5b} concerns, is a separate question that the present paper does not
       address.
     \end{remark}
@@ -1009,7 +1030,7 @@ to all $\ell' > \ell$.
     One must also show that $H(\sigma(\ell) \mid c)$ approaches a non-zero,
     stable, and interpretable value at large depth, with a controlled $q$-dependence.
     For the O12 observable $H(\sigma(\ell) \mid c) = H(\sigma(\ell))$ by
-    Proposition~\ref{prop:o12-zero}, so the proxy below measures the spread of the common
+    Proposition~\ref{prop:o12-zero}, so the proxy above measures the spread of the common
     profile law.
     If this limiting value vanished identically, the functional would not count
     effective degrees of freedom in the sense required by a $c$-theorem analog.
@@ -1017,11 +1038,11 @@ to all $\ell' > \ell$.
   \paragraph{Role of the multi-$q$ extension.}
     With $q \in \{61, 101\}$ now confirmed, the remaining planned tests are $q \in \{151, 211\}$.
     They should determine whether the slope of $h_{\mathrm{intra}}$ stabilises near $-1$
-    across~$q$ and whether the decay rate scales compatibly with the decay
-    of the fibre-erasure functional $I(c;\sigma(\ell))$.
-    If the two terms of decomposition~\eqref{eq:decomp}
-    decay with compatible exponents, the decomposition becomes an operational
-    structural statement rather than a purely formal identity.
+    across~$q$.
+    For the O12 observable $I(c;\sigma(\ell)) \equiv 0$, so decomposition~\eqref{eq:decomp}
+    reduces to $H(\sigma(\ell)) = H(\sigma(\ell) \mid c)$ and there is no decay of the fibre
+    information to compare; such a comparison would require an observable in which the label is
+    present at some depth.
 
     \clearpage
   \section{Rank-Level Closure and Open Problems}
@@ -1040,11 +1061,11 @@ to all $\ell' > \ell$.
   problems below are otherwise open.
 
   \begin{description}[style=nextline]
-\item[\textup{[O-1a$'$]} Born--Infeld preservation of the rank kernel (settled in law for O12).]
+\item[\textup{[O-1a$'$]} Fingerprint preservation of the rank kernel (settled in law for O12).]
 Since the rank carries no fibre information (Proposition~\ref{prop:rank-suff}),
 any residual $c$-dependence in the capacity $\sigma_c(\ell)$ of Theorem~\ref{thm:erasure}
-must enter through the Born--Infeld fingerprint by which $\sigma_c(\ell)$ differs from
-$r_c(\ell)$~\cite{Beau2026a1,Beau2026a2}.
+must enter through the O12 three-character fingerprint by which $\sigma_c(\ell)$ differs from
+$r_c(\ell)$~\cite{Beau2026a16}.
 O12's exact rank formula identifies this fingerprint precisely: the increment's rank contribution
 depends on the block label $c=(c_1,c_2,c_3)$ only through the projective pair
 $(\alpha,\beta)=(B/A,C/A) \bmod q$, where $A=c_1+c_2+c_3$, $B=c_2+c_3$, $C=c_3$ are block-only
@@ -1062,7 +1083,7 @@ The task was the statement that the increment kernel does not depend on the labe
 Under the campaign sampling law~\eqref{eq:bi-kernel} holds, because the label is independent
 of the whole profile (Proposition~\ref{prop:o12-zero}).
 The mechanism is the invariance of the profile under multiplication of the whole block by any
-unit~\cite{Beau2026a36}: the pair $(\alpha,\beta)$ ranges over the same distribution for every
+unit~\cite{Beau2026a16,Beau2026a36}: the pair $(\alpha,\beta)$ ranges over the same distribution for every
 label, so it cannot carry label information in law.
 This settles the question for general labels $c$, $c'$, not only within an orbit; the O31 claim
 that it was closed within each colour orbit is withdrawn~\cite{Beau2026a35} and is not needed.
@@ -1072,11 +1093,11 @@ property of individual blocks that the present paper does not analyse.
 Earlier versions cited the rank-one colour covariance of O32 as evidence of shape
 universality; O32 shows that this rank carries no such content~\cite{Beau2026a36}.
 
-\item[\textup{[O-1b]} Born--Infeld composability of the capacity channel.]
+\item[\textup{[O-1b]} Fingerprint composability of the capacity channel.]
 At the rank level, on the pre-saturation window relevant to the capacity analysis,
 the coarse-graining channels compose and~\textup{[H-sg]} is redundant
 (Corollary~\ref{cor:rank-sg}).
-What remains is whether the Born--Infeld fingerprint keeps $\sigma(\ell)$ a sufficient
+What remains is whether the three-character fingerprint keeps $\sigma(\ell)$ a sufficient
 Markov state, so that the capacity channels compose as
 $G_{\ell_3 \leftarrow \ell_2} \circ G_{\ell_2 \leftarrow \ell_1} = G_{\ell_3 \leftarrow \ell_1}$
 for all $\ell_1 < \ell_2 < \ell_3$.
@@ -1128,9 +1149,11 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   Corollary~\ref{cor:rank-sg} shows that the rank channel composes trivially on the
   pre-saturation window and that~\textup{[H-sg]} is not even needed at that level.
   Both results follow from a single mechanism: each seed translate is a single Fourier
-  character fixed by the second coordinate, irrespective of the central character~$c$.
+  character, of frequency $cb$ with $b$ its second coordinate; the frequencies depend on~$c$, but
+  their number does not.
   At the capacity level, the O12 observable under the campaign sampling law satisfies
-  \textup{[H-suff]} in law through the unit-scaling invariance proved in
+  \textup{[H-suff]} in law through the unit-scaling invariance of the profile
+  (O12~\cite{Beau2026a16}) and the character-independent law deduced from it in
   O32~\cite{Beau2026a36}, which settles~\textup{[O-1a$'$]} for general labels
   (Proposition~\ref{prop:o12-zero}).
   This is independence in law, not equality of profiles for each draw of the auxiliary
@@ -1147,12 +1170,13 @@ light cone on the temporal axis~$n$, orthogonal to the present paper.
   Tests at $q \in \{151, 211\}$ are planned.
 
   Two limits of interpretation follow.
-  The rank and the O12 capacity carry no label information because of their construction: the
-  rank depends only on the second coordinate of the ball, and the capacity only on the block up
-  to a common unit, while the central coordinate is inert for this observable~\cite{Beau2026a16}.
-  This is an absence of label information in the observables considered, not a demonstrated
-  erasure mechanism: no depth at which information is lost has been exhibited, because none
-  is present at depth zero.
+  The rank carries no label information by construction: it depends only on the second
+  coordinate of the ball. The O12 capacity carries none in law, under the campaign sampling law:
+  it depends on the block only up to a common unit, the auxiliary characters are uniform, and the
+  central coordinate is inert for this observable~\cite{Beau2026a16}.
+  This is an absence of label information in the observables considered, at every depth,
+  depth zero included; it is not a demonstrated erasure mechanism, and no depth at which
+  information is lost has been exhibited.
   In particular, the condition $I(c;\sigma(\ell)) = 0$ of Corollary~\ref{cor:fixedpoint} does
   not, for these observables, support reading gauge invariance as the equilibrium of an
   irreversible coarse-graining flow.
