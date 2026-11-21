@@ -25,9 +25,10 @@ non-increasing in $\ell$:
 [H-suff] is proved at the level of the BFS rank observable: for the uniform
 seed of the O12 pipeline the rank is $\min(2\ell+1, q)$, the number of distinct
 second coordinates in the ball, independent of $c$. For the O12 three-character
-capacity under the campaign sampling law, O32 2.0 proves that the distribution of
-the profile does not depend on the label, so $I(c;\sigma(\ell)) = 0$ at every
-depth and [H-suff] holds. This is independence in law, not equality of profiles
+capacity under the campaign sampling law, the profile is invariant under scaling
+of the whole character block by any unit (O12's exact rank formula; O32 2.0,
+Theorem 4), and O32 2.0 deduces that its distribution does not depend on the label,
+so $I(c;\sigma(\ell)) = 0$ at every depth, depth 0 included, and [H-suff] holds. This is independence in law, not equality of profiles
 for each draw of the auxiliary characters. It shows that the label is absent from
 that observable; it demonstrates no erasure mechanism.
 
@@ -51,9 +52,10 @@ capacity profiles of the spectral programme:
 
 - **ENI** establishes $S_\Pi > 0$ but does not order information loss
   across resolutions.
-- **Fibre Erasure** introduces the coarse-graining axis $\ell$ and turns
-  ENI into a monotone, measurable hierarchy via the data-processing
-  inequality.
+- **Fibre Erasure** introduces the coarse-graining axis $\ell$ and, conditionally
+  on [H-suff] and [H-sg], a monotone information functional along it via the
+  data-processing inequality; for the O12 observable that functional is
+  identically zero, so the monotonicity is trivial there.
 
 Three orthogonal axes are disambiguated:
 
@@ -77,8 +79,9 @@ Conditional on [H-suff] and [H-sg]:
   coarse-graining hierarchy;
 - its non-increase under depth-increment, via the data-processing
   inequality;
-- the identification of $I(c;\sigma(\ell)) = 0$ as the fibre-erasure
-  equilibrium condition;
+- the characterisation of $I(c;\sigma(\ell)) = 0$ as label independence of the
+  observable (for the O12 capacity it holds already at depth 0: absence of label
+  information, not a state reached by erasure);
 - for the O12 capacity under the campaign sampling law, $I(c;\sigma(\ell)) = 0$
   at every depth (from O32 2.0), which settles [O-1a$'$] in law.
 
@@ -88,8 +91,8 @@ Conditional on [H-suff] and [H-sg]:
 - [H-suff] for observables other than the O12 capacity under the campaign
   sampling law;
 - any non-trivial erasure for the O12 observable, or any colour statement
-  (the leave-triplet-out scores are unexplained measurements, not support for
-  [H-color]);
+  (the leave-triplet-out scores are measurements, partly unexplained at
+  $q = 151$, not support for [H-color]);
 - the full capacity-level form of [H-sg] (proved at the rank level and
   there redundant; capacity-level residue open as [O-1b]).
 
